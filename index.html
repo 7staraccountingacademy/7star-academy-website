@@ -1,0 +1,353 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Learn TallyPrime, GST and TDS in Hindi with 7 STAR Accounting Academy.">
+<title>7 STAR Accounting Academy | TallyPrime Course</title>
+<style>
+:root {
+  --dark:#07383a;
+  --teal:#0c6265;
+  --green:#459879;
+  --mint:#edf5f2;
+  --light:#b8decb;
+  --orange:#ff6b4e;
+}
+* {box-sizing:border-box}
+html {scroll-behavior:smooth}
+body {
+  margin:0;
+  font-family:Arial,"Noto Sans Devanagari",sans-serif;
+  color:var(--dark);
+}
+a {text-decoration:none;color:inherit}
+.container {max-width:1180px;margin:auto;padding:0 24px}
+header {
+  background:white;
+  position:sticky;
+  top:0;
+  z-index:10;
+  box-shadow:0 2px 12px #07383a10;
+}
+.nav {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  min-height:90px;
+  gap:20px;
+}
+.logo {
+  width:115px;
+  height:76px;
+  object-fit:contain;
+}
+.menu {display:flex;align-items:center;gap:26px}
+.menu a {font-size:14px;font-weight:bold}
+.btn {
+  display:inline-block;
+  padding:15px 25px;
+  border-radius:5px;
+  background:var(--teal);
+  color:white;
+  font-weight:bold;
+  border:0;
+}
+.btn:hover {background:#07494b}
+.hero {
+  background:var(--mint);
+  min-height:570px;
+  overflow:hidden;
+}
+.hero-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  align-items:center;
+  gap:50px;
+  padding-top:75px;
+  padding-bottom:75px;
+}
+.tag {
+  color:var(--orange);
+  font-weight:bold;
+  font-size:16px;
+}
+h1 {
+  font-size:clamp(35px,4.5vw,58px);
+  line-height:1.13;
+  margin:22px 0;
+}
+h1 span {color:var(--green)}
+.hero p {
+  font-size:17px;
+  line-height:1.9;
+  color:#3e615b;
+}
+.features {list-style:none;padding:0;margin:25px 0}
+.features li {margin:15px 0;font-size:15px}
+.features li:before {
+  content:"✓";
+  color:white;
+  background:var(--green);
+  border-radius:50%;
+  padding:3px 6px;
+  margin-right:10px;
+}
+.hero-actions {display:flex;gap:15px;align-items:center;flex-wrap:wrap}
+.fee {font-size:25px;font-weight:900;color:var(--dark)}
+.preview-wrap {
+  background:var(--light);
+  padding:45px 22px;
+  border-radius:45% 0 0 45%;
+}
+.preview {
+  background:linear-gradient(140deg,#052f32,#0c6265);
+  color:white;
+  border-radius:15px;
+  padding:35px 25px;
+  min-height:340px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  box-shadow:0 18px 35px #07383a28;
+}
+.preview .play {
+  width:85px;height:85px;
+  border-radius:50%;
+  background:var(--orange);
+  display:grid;
+  place-items:center;
+  font-size:32px;
+  margin:22px 0;
+}
+.preview h2 {font-size:27px;margin:0}
+.preview p {color:#cce7de;font-size:15px}
+section {padding:80px 0}
+.section-title {text-align:center;margin-bottom:40px}
+.section-title h2 {font-size:36px;margin:10px 0}
+.section-title p {color:#56756f;line-height:1.7}
+.cards {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:24px;
+}
+.card {
+  background:white;
+  border:1px solid #dfece6;
+  border-radius:13px;
+  padding:30px;
+  box-shadow:0 10px 30px #07383a0a;
+}
+.card .symbol {font-size:36px}
+.card h3 {font-size:20px}
+.card p {font-size:15px;line-height:1.8;color:#55716b}
+.soft {background:#f3faf6}
+.steps {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:18px;
+}
+.step {
+  background:white;
+  padding:25px;
+  border:1px solid #dfece6;
+  border-radius:12px;
+}
+.step strong {
+  display:grid;
+  place-items:center;
+  width:42px;height:42px;
+  border-radius:50%;
+  background:#d5eee0;
+  color:var(--teal);
+}
+.step p {color:#55716b;font-size:14px;line-height:1.7}
+.enroll {
+  background:var(--dark);
+  border-radius:20px;
+  padding:60px 25px;
+  text-align:center;
+  color:white;
+}
+.enroll h2 {font-size:35px}
+.enroll p {color:#d0e7df}
+.enroll .price {font-size:56px;font-weight:900;margin:20px}
+.enroll .btn {background:var(--orange)}
+.notice {font-size:13px;line-height:1.7}
+footer {
+  background:#052c2e;
+  color:white;
+  padding:35px 20px;
+  text-align:center;
+}
+footer p {font-size:13px;color:#c8e0d7}
+@media(max-width:850px) {
+  .hero-grid {grid-template-columns:1fr}
+  .cards {grid-template-columns:1fr 1fr}
+  .steps {grid-template-columns:1fr 1fr}
+  .menu a:not(.btn) {display:none}
+}
+@media(max-width:550px) {
+  .nav {min-height:75px}
+  .logo {width:90px;height:65px}
+  .menu {gap:10px}
+  .btn {padding:12px 16px}
+  .hero-grid {padding-top:45px;padding-bottom:45px}
+  .preview-wrap {padding:25px 12px}
+  .cards,.steps {grid-template-columns:1fr}
+  section {padding:55px 0}
+  .section-title h2 {font-size:29px}
+}
+</style>
+</head>
+<body>
+
+<header>
+ <div class="container nav">
+  <a href="#" aria-label="7 STAR Accounting Academy Home">
+   <img class="logo"
+    src="Glossy%20Star%20Accounting%20Academy%20Logo.png"
+    alt="7 STAR Accounting Academy Logo">
+  </a>
+  <nav class="menu">
+   <a href="#home">HOME</a>
+   <a href="#course">COURSE</a>
+   <a href="#how">HOW IT WORKS</a>
+   <a href="#enroll" class="btn">ENROLL ₹99</a>
+  </nav>
+ </div>
+</header>
+
+<main>
+ <div class="hero" id="home">
+  <div class="container hero-grid">
+   <div>
+    <div class="tag">✦ Learn Practical Accounting Online</div>
+    <h1>Learn <span>TallyPrime</span><br>with GST & TDS</h1>
+    <p>
+     घर बैठे सीखें Professional Accounting!<br>
+     Hindi में Step-by-Step Recorded Video Lessons।
+    </p>
+    <ul class="features">
+     <li>Practical Accounting Training</li>
+     <li>GST & TDS with Real Examples</li>
+     <li>Lifetime Recorded Course Access</li>
+     <li>Online Exam & Certificate</li>
+    </ul>
+    <div class="hero-actions">
+     <a href="#enroll" class="btn">ENROLL NOW</a>
+     <span class="fee">₹99 Only</span>
+    </div>
+  </div>
+  <div class="preview-wrap">
+   <div class="preview">
+    <h2>TallyPrime + GST + TDS</h2>
+    <div class="play">▶</div>
+    <p>Hindi Recorded Course</p>
+    <p>Learn Anytime • Learn Anywhere</p>
+   </div>
+  </div>
+ </div>
+ </div>
+
+ <section id="course">
+  <div class="container">
+   <div class="section-title">
+    <div class="tag">OUR COURSE</div>
+    <h2>What You Will Learn</h2>
+    <p>Accounting की जरूरी Skills एक ही Course में।</p>
+   </div>
+   <div class="cards">
+    <div class="card">
+     <div class="symbol">📘</div>
+     <h3>Accounting Basics</h3>
+     <p>Accounting Rules, Journal Entries और Voucher Concepts।</p>
+    </div>
+    <div class="card">
+     <div class="symbol">💻</div>
+     <h3>TallyPrime Practical</h3>
+     <p>Company Creation, Ledgers, Purchase, Sales और Reports।</p>
+    </div>
+    <div class="card">
+     <div class="symbol">📊</div>
+     <h3>GST & TDS</h3>
+     <p>GST और TDS Concepts के साथ Practical Entries।</p>
+    </div>
+    <div class="card">
+     <div class="symbol">🎥</div>
+     <h3>Recorded Lessons</h3>
+     <p>अपनी सुविधा से Lessons बार-बार देखिए।</p>
+    </div>
+    <div class="card">
+     <div class="symbol">📝</div>
+     <h3>Final Exam</h3>
+     <p>30 Questions का Online Examination। Passing Marks 60%।</p>
+    </div>
+    <div class="card">
+     <div class="symbol">🏆</div>
+     <h3>Certificate</h3>
+     <p>Exam Pass करने पर PDF Certificate Email पर मिलेगा।</p>
+    </div>
+   </div>
+  </div>
+ </section>
+
+ <section class="soft" id="how">
+  <div class="container">
+   <div class="section-title">
+    <div class="tag">SIMPLE ADMISSION PROCESS</div>
+    <h2>How It Works</h2>
+   </div>
+   <div class="steps">
+    <div class="step">
+     <strong>1</strong>
+     <h3>Register</h3>
+     <p>अपनी Details भरकर Account बनाएँ।</p>
+    </div>
+    <div class="step">
+     <strong>2</strong>
+     <h3>Pay ₹99</h3>
+     <p>Secure Online Payment करें।</p>
+    </div>
+    <div class="step">
+     <strong>3</strong>
+     <h3>Learn Online</h3>
+     <p>Payment Verify होने पर Recorded Course देखें।</p>
+    </div>
+    <div class="step">
+     <strong>4</strong>
+     <h3>Exam & Certificate</h3>
+     <p>Final Exam Pass करके Certificate प्राप्त करें।</p>
+    </div>
+   </div>
+  </div>
+ </section>
+
+ <section id="enroll">
+  <div class="container">
+   <div class="enroll">
+    <div class="tag">START LEARNING TODAY</div>
+    <h2>TallyPrime + GST + TDS</h2>
+    <p>Hindi Recorded Course • Lifetime Access*</p>
+    <div class="price">₹99</div>
+    <p><strong>Online Admission Opening Soon</strong></p>
+    <p class="notice">
+     Student Registration and Payment are not active yet.<br>
+     *Lifetime access is available while the course platform operates.
+    </p>
+   </div>
+  </div>
+ </section>
+</main>
+
+<footer>
+ <strong>7 STAR Accounting Academy</strong>
+ <p>Learn Accounting • Build Your Future</p>
+ <p>© 2026 7 STAR Accounting Academy</p>
+</footer>
+
+</body>
+</html>
