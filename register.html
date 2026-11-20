@@ -178,15 +178,43 @@ button:disabled{opacity:.65;cursor:not-allowed}
   </div>
 </main>
 
-<script>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-app.js";
+import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCl38TaDCBuvRsc2AKWV7tRiS4_hKcgbLc",
+  authDomain: "star-accounting-academy.firebaseapp.com",
+  projectId: "star-accounting-academy",
+  storageBucket: "star-accounting-academy.firebasestorage.app",
+  messagingSenderId: "421729518534",
+  appId: "1:421729518534:web:3eb65dbabc5870128928c7",
+  measurementId: "G-08L18H3VCS"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
 document.getElementById("registrationForm")
-  .addEventListener("submit", function(event){
+  .addEventListener("submit", async function(event) {
     event.preventDefault();
-    alert(
-      "Registration Form Preview Successful!\n\n" +
-      "Your details have NOT been saved.\n" +
-      "Secure registration and payment will be added next."
-    );
+
+    const form = event.currentTarget;
+    const email = form.querySelector('input[type="email"]')?.value.trim();
+    const password = form.querySelector('input[type="password"]')?.value;
+
+    if (!email || !password) {
+      alert("Please enter your email and password.");
+      return;
+    }
+
+    try {
+      await createUserWithEmailAndPassword(auth, email, password);
+      alert("Account created successfully! Payment setup is coming next.");
+    } catch (error) {
+      alert("Registration failed: " + error.message);
+    }
   });
 </script>
 </body>
