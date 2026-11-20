@@ -1,0 +1,193 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Registration | 7 STAR Accounting Academy</title>
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial,"Noto Sans Devanagari",sans-serif;
+  background:#edf5f2;
+  color:#07383a;
+}
+header{
+  background:#fff;
+  padding:12px 7%;
+  box-shadow:0 3px 15px #07383a12;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.logo{width:105px;height:70px;object-fit:contain}
+.back{
+  color:#0c6265;
+  text-decoration:none;
+  font-size:14px;
+  font-weight:bold;
+}
+.wrapper{
+  max-width:1050px;
+  margin:65px auto;
+  padding:0 20px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:55px;
+  align-items:center;
+}
+.info h1{font-size:43px;line-height:1.2}
+.info h1 span{color:#459879}
+.info p{color:#4b7069;line-height:1.9}
+.info ul{list-style:none;padding:0}
+.info li{margin:17px 0}
+.info li:before{
+  content:"✓";
+  background:#459879;
+  color:white;
+  border-radius:50%;
+  padding:4px 7px;
+  margin-right:10px;
+}
+.form-box{
+  background:#fff;
+  padding:38px;
+  border-radius:18px;
+  box-shadow:0 15px 45px #07383a18;
+}
+.form-box h2{margin:0 0 8px}
+.subtitle{color:#638079;font-size:14px;margin-bottom:25px}
+label{
+  display:block;
+  font-weight:bold;
+  font-size:14px;
+  margin:16px 0 7px;
+}
+input{
+  width:100%;
+  padding:13px;
+  border:1px solid #cbded6;
+  border-radius:7px;
+  font-size:15px;
+}
+input:focus{
+  outline:none;
+  border-color:#0c6265;
+  box-shadow:0 0 0 3px #0c626520;
+}
+.price{
+  background:#edf5f2;
+  padding:15px;
+  border-radius:8px;
+  margin:22px 0;
+  display:flex;
+  justify-content:space-between;
+  font-weight:bold;
+}
+button{
+  width:100%;
+  padding:15px;
+  background:#0c6265;
+  color:white;
+  border:0;
+  border-radius:8px;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+}
+button:disabled{opacity:.65;cursor:not-allowed}
+.note{
+  color:#6b827b;
+  font-size:12px;
+  text-align:center;
+  line-height:1.6;
+}
+@media(max-width:750px){
+  .wrapper{grid-template-columns:1fr;margin:35px auto;gap:25px}
+  .info h1{font-size:32px}
+  .form-box{padding:25px}
+}
+</style>
+</head>
+<body>
+<header>
+  <a href="index.html">
+    <img class="logo"
+      src="Glossy%20Star%20Accounting%20Academy%20Logo.png"
+      alt="7 STAR Accounting Academy Logo">
+  </a>
+  <a class="back" href="index.html">← Back to Home</a>
+</header>
+
+<main class="wrapper">
+  <div class="info">
+    <h1>Start Your <span>Accounting Journey</span></h1>
+    <p>
+      घर बैठे सीखें TallyPrime + GST + TDS,
+      Step-by-Step Hindi Recorded Classes के साथ।
+    </p>
+    <ul>
+      <li>Complete Recorded Video Course</li>
+      <li>Lifetime Course Access*</li>
+      <li>Practical Accounting Training</li>
+      <li>Final Exam & Certificate on Passing</li>
+    </ul>
+  </div>
+
+  <div class="form-box">
+    <h2>Student Registration</h2>
+    <p class="subtitle">Admission Form का Preview</p>
+
+    <form id="registrationForm">
+      <label for="name">Full Name *</label>
+      <input id="name" type="text"
+        placeholder="Enter your full name" required>
+
+      <label for="mobile">Mobile Number *</label>
+      <input id="mobile" type="tel"
+        placeholder="10-digit mobile number"
+        pattern="[0-9]{10}" maxlength="10" required>
+
+      <label for="email">Email Address *</label>
+      <input id="email" type="email"
+        placeholder="Enter your email" required>
+
+      <label for="city">City *</label>
+      <input id="city" type="text"
+        placeholder="Enter your city" required>
+
+      <label for="password">Create Password</label>
+      <input id="password" type="password"
+        placeholder="Available when secure login is activated"
+        disabled>
+
+      <div class="price">
+        <span>Course Fee</span>
+        <span>₹99 Only</span>
+      </div>
+
+      <button type="submit">Preview Registration</button>
+      <p class="note">
+        This is a demo form. No details are saved or sent.
+        Payment and secure student login are not active yet.
+        <br>
+        *Lifetime access is available while the course platform operates.
+      </p>
+    </form>
+  </div>
+</main>
+
+<script>
+document.getElementById("registrationForm")
+  .addEventListener("submit", function(event){
+    event.preventDefault();
+    alert(
+      "Registration Form Preview Successful!\n\n" +
+      "Your details have NOT been saved.\n" +
+      "Secure registration and payment will be added next."
+    );
+  });
+</script>
+</body>
+</html>
