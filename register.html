@@ -183,7 +183,7 @@ button:disabled{opacity:.65;cursor:not-allowed}
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-app.js";
 import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-auth.js";
-
+import { getFirestore, doc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-firestore.js";
 const firebaseConfig = {
   apiKey: "AIzaSyCl38TaDCBuvRsc2AKWV7tRiS4_hKcgbLc",
   authDomain: "star-accounting-academy.firebaseapp.com",
@@ -196,7 +196,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-
+const db = getFirestore(app);
 document.getElementById("registrationForm")
   .addEventListener("submit", async function(event) {
     event.preventDefault();
@@ -204,14 +204,26 @@ document.getElementById("registrationForm")
     const form = event.currentTarget;
     const email = form.querySelector('input[type="email"]')?.value.trim();
     const password = form.querySelector('input[type="password"]')?.value;
-
+    const name = document.getElementById("name").value.trim();
+    const mobile = document.getElementById("mobile").value.trim();
+    const city = document.getElementById("city").value.trim();
     if (!email || !password) {
       alert("Please enter your email and password.");
       return;
     }
 
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+
+await setDoc(doc(db, "students", userCredential.user.uid), {
+  name: name,
+  email: email,
+  mobile: mobile,
+  city: city,
+  paymentStatus: "pending",
+  courseAccess: false,
+  createdAt: serverTimestamp()
+});
       alert("Account created successfully! Payment setup is coming next.");
     } catch (error) {
       alert("Registration failed: " + error.message);
