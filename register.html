@@ -224,7 +224,8 @@ await setDoc(doc(db, "students", userCredential.user.uid), {
   courseAccess: false,
   createdAt: serverTimestamp()
 });
-      alert("Account created successfully! Payment setup is coming next.");
+      alert("Registration successful! Please complete your ₹99 course payment.");
+window.location.href = "https://rzp.io/rzp/gb8RmZi";
     } catch (error) {
       alert("Registration failed: " + error.message);
     }
