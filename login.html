@@ -1,0 +1,233 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Student Login | 7 STAR Accounting Academy</title>
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#edf5f2;
+  color:#07383a;
+}
+header{
+  background:white;
+  padding:12px 7%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  box-shadow:0 3px 15px #07383a12;
+}
+.logo{width:105px;height:70px;object-fit:contain}
+a{color:#0c6265;text-decoration:none}
+main{
+  min-height:75vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:35px 18px;
+}
+.card{
+  background:white;
+  padding:35px;
+  border-radius:16px;
+  width:100%;
+  max-width:430px;
+  box-shadow:0 15px 40px #07383a18;
+}
+h1{font-size:27px;margin:0 0 10px}
+.subtitle{color:#638079;font-size:14px;line-height:1.6}
+label{display:block;margin:18px 0 7px;font-weight:bold;font-size:14px}
+input{
+  width:100%;
+  padding:13px;
+  border:1px solid #cbded6;
+  border-radius:7px;
+  font-size:15px;
+}
+button{
+  width:100%;
+  padding:14px;
+  margin-top:22px;
+  border:0;
+  border-radius:7px;
+  background:#0c6265;
+  color:white;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+}
+button:disabled{opacity:.6;cursor:not-allowed}
+.links{text-align:center;margin-top:20px;font-size:14px;line-height:2}
+#message{font-size:14px;line-height:1.6;margin-top:15px}
+.hidden{display:none}
+</style>
+</head>
+<body>
+
+<header>
+  <a href="index.html">
+    <img class="logo"
+      src="Glossy%20Star%20Accounting%20Academy%20Logo.png"
+      alt="7 STAR Accounting Academy">
+  </a>
+  <a href="index.html">← Home</a>
+</header>
+
+<main>
+<div class="card">
+
+  <div id="loginSection">
+    <h1>Student Login</h1>
+    <p class="subtitle">
+      Login to access your learning dashboard.
+    </p>
+
+    <form id="loginForm">
+      <label for="email">Email ID</label>
+      <input type="email" id="email" required
+        autocomplete="email" placeholder="Enter registered email">
+
+      <label for="password">Password</label>
+      <input type="password" id="password" required
+        autocomplete="current-password" placeholder="Enter password">
+
+      <button id="loginButton" type="submit">Login</button>
+    </form>
+
+    <div class="links">
+      <a href="#" id="forgotLink">Forgot Password?</a>
+      <p>New Student? <a href="register.html">Register Here</a></p>
+    </div>
+  </div>
+
+  <div id="resetSection" class="hidden">
+    <h1>Reset Password</h1>
+    <p class="subtitle">
+      Enter your registered email to receive a password reset link.
+    </p>
+
+    <form id="resetForm">
+      <label for="resetEmail">Registered Email ID</label>
+      <input type="email" id="resetEmail" required
+        autocomplete="email" placeholder="Enter your email">
+
+      <button id="resetButton" type="submit">
+        Send Reset Link
+      </button>
+    </form>
+
+    <div class="links">
+      <a href="#" id="backLink">← Back to Login</a>
+    </div>
+  </div>
+
+  <p id="message" role="status" aria-live="polite"></p>
+
+</div>
+</main>
+
+<script type="module">
+import { initializeApp } from
+"https://www.gstatic.com/firebasejs/13.4.0/firebase-app.js";
+
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  sendPasswordResetEmail
+} from
+"https://www.gstatic.com/firebasejs/13.4.0/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCl38TaDCBuvRsc2AKWV7tRiS4_hKcgbLc",
+  authDomain: "star-accounting-academy.firebaseapp.com",
+  projectId: "star-accounting-academy",
+  storageBucket: "star-accounting-academy.firebasestorage.app",
+  messagingSenderId: "421729518534",
+  appId: "1:421729518534:web:3eb65dbabc5870128928c7",
+  measurementId: "G-08L18H3VCS"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+const message = document.getElementById("message");
+const loginSection = document.getElementById("loginSection");
+const resetSection = document.getElementById("resetSection");
+
+function showMessage(text, success=false) {
+  message.textContent = text;
+  message.style.color = success ? "#237a51" : "#b3261e";
+}
+
+document.getElementById("forgotLink").onclick = (e) => {
+  e.preventDefault();
+  loginSection.classList.add("hidden");
+  resetSection.classList.remove("hidden");
+  message.textContent = "";
+};
+
+document.getElementById("backLink").onclick = (e) => {
+  e.preventDefault();
+  resetSection.classList.add("hidden");
+  loginSection.classList.remove("hidden");
+  message.textContent = "";
+};
+
+document.getElementById("loginForm").addEventListener(
+  "submit", async (e) => {
+    e.preventDefault();
+
+    const button = document.getElementById("loginButton");
+    button.disabled = true;
+    showMessage("");
+
+    try {
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
+
+      await signInWithEmailAndPassword(auth, email, password);
+
+      window.location.replace("dashboard.html");
+    } catch (error) {
+      showMessage("Login failed. Please check your email and password.");
+    } finally {
+      button.disabled = false;
+    }
+  }
+);
+
+document.getElementById("resetForm").addEventListener(
+  "submit", async (e) => {
+    e.preventDefault();
+
+    const button = document.getElementById("resetButton");
+    button.disabled = true;
+    showMessage("");
+
+    try {
+      const email = document.getElementById("resetEmail").value.trim();
+      await sendPasswordResetEmail(auth, email);
+
+      showMessage(
+        "If this email is registered, a password reset link will be sent. Please check your inbox and spam folder.",
+        true
+      );
+    } catch (error) {
+      if (error.code === "auth/invalid-email") {
+        showMessage("Please enter a valid email address.");
+      } else {
+        showMessage("Unable to send reset email. Please try again.");
+      }
+    } finally {
+      button.disabled = false;
+    }
+  }
+);
+</script>
+
+</body>
+</html>
