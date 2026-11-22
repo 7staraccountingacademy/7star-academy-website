@@ -1,0 +1,181 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Student Dashboard | 7 STAR Accounting Academy</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#edf5f2;color:#07383a}
+header{background:white;padding:12px 6%;display:flex;align-items:center;justify-content:space-between;gap:12px;box-shadow:0 3px 15px #07383a12}
+.logo{width:95px;height:65px;object-fit:contain}
+button,.btn{background:#0c6265;color:white;border:0;border-radius:8px;padding:13px 20px;font-weight:bold;cursor:pointer;text-decoration:none;display:inline-block}
+button:hover,.btn:hover{background:#07494b}
+.container{max-width:1100px;margin:40px auto;padding:0 20px}
+h1{font-size:30px}
+.subtitle{color:#56756f;line-height:1.7}
+.card{background:white;border:1px solid #dfece6;border-radius:15px;padding:25px;margin-top:22px;box-shadow:0 8px 25px #07383a0a}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.icon{font-size:35px}
+.card p{color:#56756f;line-height:1.7}
+.hidden{display:none!important}
+.price{font-size:35px;font-weight:bold;color:#0c6265}
+.notice{font-size:13px;color:#56756f}
+#status{padding:20px 0}
+@media(max-width:650px){.grid{grid-template-columns:1fr}.container{margin:25px auto}h1{font-size:25px}header{padding:10px 4%}}
+</style>
+</head>
+<body>
+
+<header>
+  <a href="index.html">
+    <img class="logo"
+      src="Glossy%20Star%20Accounting%20Academy%20Logo.png"
+      alt="7 STAR Accounting Academy">
+  </a>
+  <button id="logoutButton" class="hidden">Logout</button>
+</header>
+
+<main class="container">
+  <div id="status" role="status">Checking your account...</div>
+
+  <div id="dashboard" class="hidden">
+    <h1 id="welcome">Welcome, Student!</h1>
+    <p class="subtitle">7 STAR Accounting Academy — My Learning Dashboard</p>
+
+    <div id="locked" class="card hidden">
+      <h2>🔒 Your Course is Locked</h2>
+      <p>Your account is registered, but your ₹99 course payment has not been verified yet.</p>
+      <p class="price">₹99 Only</p>
+      <a class="btn" href="https://rzp.io/rzp/gb8RmZi">
+        Pay ₹99
+      </a>
+      <p class="notice">
+        Already paid? Please allow time for payment verification.
+        Contact the academy if access is not activated.
+      </p>
+    </div>
+
+    <div id="unlocked" class="hidden">
+      <div class="card">
+        <h2>🎉 Your Course is Unlocked!</h2>
+        <p>TallyPrime + GST + TDS — Hindi Recorded Course</p>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <div class="icon">🎥</div>
+          <h2>Video Lectures</h2>
+          <p>Watch your recorded TallyPrime, GST and TDS lessons.</p>
+          <p class="notice">Video lessons will be added here.</p>
+        </div>
+
+        <div class="card">
+          <div class="icon">📚</div>
+          <h2>Study Material</h2>
+          <p>Download practical notes, PDF files and exercises.</p>
+          <p class="notice">Study materials will be added here.</p>
+        </div>
+
+        <div class="card">
+          <div class="icon">📝</div>
+          <h2>Final Examination</h2>
+          <p>Complete your 30-question online exam.</p>
+          <p class="notice">Exam link will be added here.</p>
+        </div>
+
+        <div class="card">
+          <div class="icon">🏆</div>
+          <h2>Certificate</h2>
+          <p>Pass the exam to receive your certificate by email.</p>
+          <p class="notice">Certificate instructions will be added here.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script type="module">
+import { initializeApp } from
+"https://www.gstatic.com/firebasejs/13.4.0/firebase-app.js";
+
+import { getAuth, onAuthStateChanged, signOut } from
+"https://www.gstatic.com/firebasejs/13.4.0/firebase-auth.js";
+
+import { getFirestore, doc, getDoc } from
+"https://www.gstatic.com/firebasejs/13.4.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCl38TaDCBuvRsc2AKWV7tRiS4_hKcgbLc",
+  authDomain: "star-accounting-academy.firebaseapp.com",
+  projectId: "star-accounting-academy",
+  storageBucket: "star-accounting-academy.firebasestorage.app",
+  messagingSenderId: "421729518534",
+  appId: "1:421729518534:web:3eb65dbabc5870128928c7",
+  measurementId: "G-08L18H3VCS"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+const status = document.getElementById("status");
+const dashboard = document.getElementById("dashboard");
+const locked = document.getElementById("locked");
+const unlocked = document.getElementById("unlocked");
+const logoutButton = document.getElementById("logoutButton");
+
+onAuthStateChanged(auth, async (user) => {
+  dashboard.classList.add("hidden");
+  locked.classList.add("hidden");
+  unlocked.classList.add("hidden");
+
+  if (!user) {
+    window.location.replace("login.html");
+    return;
+  }
+
+  try {
+    const snapshot = await getDoc(doc(db, "students", user.uid));
+
+    if (!snapshot.exists()) {
+      status.textContent =
+        "Student record not found. Please contact the academy.";
+      return;
+    }
+
+    const student = snapshot.data();
+
+    document.getElementById("welcome").textContent =
+      "Welcome, " + (student.name || "Student") + "!";
+
+    const hasAccess =
+      student.courseAccess === true &&
+      student.paymentStatus === "paid";
+
+    if (hasAccess) {
+      unlocked.classList.remove("hidden");
+    } else {
+      locked.classList.remove("hidden");
+    }
+
+    status.classList.add("hidden");
+    dashboard.classList.remove("hidden");
+    logoutButton.classList.remove("hidden");
+
+  } catch (error) {
+    status.textContent =
+      "Unable to check course access. Please try again later.";
+    console.error(error);
+  }
+});
+
+logoutButton.addEventListener("click", async () => {
+  await signOut(auth);
+  window.location.replace("login.html");
+});
+</script>
+
+</body>
+</html>
