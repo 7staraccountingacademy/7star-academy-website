@@ -77,6 +77,24 @@ h1{font-size:30px}
   white-space: normal;
 }
 
+/* Professional Video Lectures */
+.grid > .card:first-child iframe {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  border: none;
+  border-radius: 12px;
+  background: #07383a;
+}
+
+@media (max-width: 650px) {
+  .grid > .card:first-child iframe {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+  }
+}
+
 </style>
 </head>
 <body>
