@@ -428,5 +428,62 @@ handler: async function (paymentResult) {
   });
 </script>
 
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const video = document.querySelector(
+    ".grid > .card:first-child iframe"
+  );
+
+  if (!video) return;
+
+  const wrapper = document.createElement("div");
+  wrapper.style.cssText =
+    "position:relative;width:100%;" +
+    "aspect-ratio:16/9;overflow:hidden;" +
+    "border-radius:14px;background:#07383a;";
+
+  video.parentNode.insertBefore(wrapper, video);
+  wrapper.appendChild(video);
+
+  video.style.cssText =
+    "display:block;width:100%;height:100%;" +
+    "aspect-ratio:auto;border:0;";
+
+  const thumbnail = document.createElement("button");
+  thumbnail.type = "button";
+  thumbnail.setAttribute("aria-label", "Open course video");
+
+  thumbnail.style.cssText =
+    "position:absolute;inset:0;width:100%;height:100%;" +
+    "padding:0;border:0;cursor:pointer;background:transparent;";
+
+  thumbnail.innerHTML = `
+    <img src="course-thumbnail.png"
+         alt="TallyPrime GST TDS Complete Course"
+         style="width:100%;height:100%;
+                object-fit:cover;display:block;">
+
+    <span style="
+      position:absolute;
+      top:50%;left:50%;
+      transform:translate(-50%,-50%);
+      background:#ff0033;
+      color:white;
+      border-radius:16px;
+      padding:12px 23px;
+      font-size:29px;
+      box-shadow:0 5px 20px #0006;">
+      ▶
+    </span>
+  `;
+
+  thumbnail.onclick = function () {
+    thumbnail.remove();
+  };
+
+  wrapper.appendChild(thumbnail);
+});
+</script>
+
 </body>
 </html>
