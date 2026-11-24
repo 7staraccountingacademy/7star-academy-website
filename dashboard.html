@@ -24,6 +24,49 @@ h1{font-size:30px}
 .notice{font-size:13px;color:#56756f}
 #status{padding:20px 0}
 @media(max-width:650px){.grid{grid-template-columns:1fr}.container{margin:25px auto}h1{font-size:25px}header{padding:10px 4%}}
+  
+/* 7 STAR Professional Dashboard Design */
+
+.grid {
+  gap: 22px;
+  margin-top: 24px;
+}
+
+.grid .card {
+  margin-top: 0;
+}
+
+.card {
+  border-radius: 18px;
+  border: 1px solid #d8e9e2;
+  box-shadow: 0 10px 28px rgba(7,56,58,0.08);
+  transition: transform 0.2s ease,
+              box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 32px rgba(7,56,58,0.12);
+}
+
+.card h2 {
+  margin-top: 0;
+}
+
+@media (max-width: 650px) {
+  .grid {
+    gap: 15px;
+  }
+
+  .card {
+    padding: 20px;
+  }
+
+  button, .btn {
+    max-width: 100%;
+  }
+}
+
 </style>
 </head>
 <body>
