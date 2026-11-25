@@ -321,6 +321,13 @@ footer .footer-links a:hover {text-decoration:underline}
   .trainer-cofounder-icon {width:48px;height:48px;flex-basis:48px;}
   .trainer-section .section-title {margin-bottom:25px;}
 }
+
+/* Brand-matched header wordmark: original academy logo elsewhere stays unchanged */
+header .nav > a:first-child {display:flex;align-items:center;flex-shrink:0}
+header img.logo {width:210px;height:72px;object-fit:contain;object-position:left center}
+@media(max-width:550px){
+  header img.logo {width:137px;height:52px}
+}
 </style>
 </head>
 <body>
@@ -329,7 +336,7 @@ footer .footer-links a:hover {text-decoration:underline}
  <div class="container nav">
   <a href="#home" aria-label="7 STAR Accounting Academy Home">
    <img class="logo"
-    src="Glossy%20Star%20Accounting%20Academy%20Logo.png"
+    src="7star-header-logo.png"
     alt="7 STAR Accounting Academy Logo">
   </a>
   <nav class="menu" aria-label="Main navigation">
