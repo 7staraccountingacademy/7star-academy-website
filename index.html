@@ -4,8 +4,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Learn TallyPrime, GST and TDS in Hindi with 7 STAR Accounting Academy.">
-<title>7 STAR Accounting Academy | TallyPrime Course</title>
+<meta name="description" content="7 STAR Accounting Academy: Learn TallyPrime, Accounting, GST and TDS in Hindi. 21 video lessons, 105 practical questions, 3-hour course, study materials, online exam and certificate. Recorded course ₹99.">
+<meta name="theme-color" content="#07383a">
+<title>7 STAR Accounting Academy | TallyPrime + GST + TDS Course ₹99</title>
 <style>
 :root {
   --dark:#07383a;
@@ -201,24 +202,113 @@ footer p {font-size:13px;color:#c8e0d7}
   section {padding:55px 0}
   .section-title h2 {font-size:29px}
 }
+
+/* Full website navigation and sections */
+[id] {scroll-margin-top:100px}
+.menu a:not(.btn) {padding:12px 0; transition:color .2s ease}
+.menu a:not(.btn):hover, .menu a:not(.btn):focus-visible {color:var(--teal)}
+.mobile-nav {display:none;position:relative}
+.mobile-nav summary {list-style:none;border:1px solid #d8e9e2;border-radius:9px;padding:11px 14px;font-weight:700;cursor:pointer;background:var(--mint);color:var(--dark)}
+.mobile-nav summary::-webkit-details-marker {display:none}
+.mobile-nav-panel {position:absolute;top:calc(100% + 12px);right:0;z-index:100;min-width:220px;padding:10px;background:white;border:1px solid #d8e9e2;border-radius:12px;box-shadow:0 10px 25px #07383a24;display:grid;gap:2px}
+.mobile-nav-panel a {display:block;padding:11px 12px;border-radius:7px;font-weight:700;font-size:13px}
+.mobile-nav-panel a:hover {background:var(--mint)}
+.course-intro {max-width:760px;margin:0 auto 30px;text-align:center;color:#56756f;line-height:1.75}
+.course-metrics {display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px;margin:0 0 30px}
+.metric {padding:20px 12px;border:1px solid #d8e9e2;border-radius:14px;background:#f3faf6;text-align:center}
+.metric strong {display:block;font-size:30px;color:var(--teal);line-height:1.15}
+.metric span {display:block;font-size:13px;color:#56756f;margin-top:6px}
+.course-outline {margin-top:35px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.outline-block {border:1px solid #d8e9e2;border-radius:14px;padding:23px;background:white}
+.outline-block h3 {font-size:18px;line-height:1.45;margin:0 0 16px}
+.outline-block ol {padding-left:22px;margin:0;color:#466761;font-size:14px;line-height:1.8}
+.outline-block li {padding:3px 0}
+.course-cta {margin-top:28px;text-align:center}
+.course-cta p {color:#56756f;font-size:14px}
+.about-layout {display:grid;grid-template-columns:0.8fr 1.2fr;gap:35px;align-items:center}
+.about-brand {border-radius:22px;background:linear-gradient(145deg,#e2f2e9,#c8e9d9);min-height:360px;padding:32px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.about-brand img {width:min(260px,100%);max-height:180px;object-fit:contain}
+.about-brand strong {font-size:20px;margin:16px 0 6px}
+.about-brand span {color:#466761;font-size:14px}
+.about-copy h2 {font-size:34px;margin:12px 0 18px}
+.about-copy p {color:#466761;line-height:1.85}
+.about-points {display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:24px 0}
+.about-points div {background:white;border:1px solid #d8e9e2;border-radius:10px;padding:14px;font-size:14px;font-weight:600}
+.about-points div::before {content:'✓';color:var(--green);font-weight:900;margin-right:8px}
+.contact-grid {display:grid;grid-template-columns:1.1fr 1fr;gap:24px;align-items:center}
+.contact-card {border:1px solid #d8e9e2;background:#fff;border-radius:16px;padding:28px}
+.contact-card h3 {margin-top:0}
+.contact-card p {line-height:1.8;color:#55716b}
+.contact-actions {display:flex;flex-wrap:wrap;gap:12px;margin-top:18px}
+.contact-actions .btn {border-radius:9px}
+.btn-outline {background:white;border:1px solid var(--teal);color:var(--teal)}
+.btn-outline:hover {background:var(--mint)}
+.preview-link {display:block;width:100%}
+.hero-course-banner {display:block;width:100%;border-radius:12px;aspect-ratio:16/9;object-fit:cover;box-shadow:0 12px 28px #052c2e28}
+.hero-preview-note {display:inline-block;margin-top:15px;color:#fff;text-decoration:underline;text-underline-offset:4px;font-weight:700}
+.enroll .btn {margin-top:18px;background:#ff6b4e}
+.enroll .btn:hover {background:#e95437}
+.enroll .small-login {display:block;margin-top:18px;font-size:13px;color:#d0e7df}
+.enroll .small-login a {color:white;text-decoration:underline}
+footer .footer-links {display:flex;justify-content:center;flex-wrap:wrap;gap:18px;margin-top:15px;font-size:13px}
+footer .footer-links a:hover {text-decoration:underline}
+:focus-visible {outline:3px solid #459879;outline-offset:3px}
+@media (max-width:1050px) {
+  .menu {gap:16px}
+  .menu a {font-size:12px}
+}
+@media (max-width:850px) {
+  .menu a:not(.btn) {display:none}
+  .mobile-nav {display:block;margin-left:auto}
+  .course-outline {grid-template-columns:1fr}
+  .course-metrics {grid-template-columns:repeat(2,1fr)}
+  .about-layout,.contact-grid {grid-template-columns:1fr}
+  .about-brand {min-height:260px}
+}
+@media (max-width:550px) {
+  .nav {gap:9px}
+  .menu {gap:0}
+  .menu .btn {font-size:12px;padding:12px 10px;white-space:nowrap}
+  .mobile-nav summary {font-size:12px;padding:11px 10px}
+  .course-metrics {gap:10px}
+  .metric strong {font-size:25px}
+  .about-points {grid-template-columns:1fr}
+  .about-copy h2 {font-size:29px}
+  .course-outline {gap:12px}
+  .outline-block {padding:18px}
+  .contact-card {padding:20px}
+}
 </style>
 </head>
 <body>
 
 <header>
  <div class="container nav">
-  <a href="#" aria-label="7 STAR Accounting Academy Home">
+  <a href="#home" aria-label="7 STAR Accounting Academy Home">
    <img class="logo"
     src="Glossy%20Star%20Accounting%20Academy%20Logo.png"
     alt="7 STAR Accounting Academy Logo">
   </a>
-  <nav class="menu">
+  <nav class="menu" aria-label="Main navigation">
    <a href="#home">HOME</a>
    <a href="#course">COURSE</a>
+   <a href="#about">ABOUT US</a>
    <a href="#how">HOW IT WORKS</a>
-    <a href="login.html">STUDENT LOGIN</a>
+   <a href="#contact">CONTACT</a>
+   <a href="login.html">STUDENT LOGIN</a>
    <a href="register.html" class="btn">ENROLL ₹99</a>
   </nav>
+  <details class="mobile-nav" id="mobileNav">
+   <summary>☰ MENU</summary>
+   <nav class="mobile-nav-panel" aria-label="Mobile navigation">
+    <a href="#home">HOME</a>
+    <a href="#course">COURSE</a>
+    <a href="#about">ABOUT US</a>
+    <a href="#how">HOW IT WORKS</a>
+    <a href="#contact">CONTACT</a>
+    <a href="login.html">STUDENT LOGIN</a>
+   </nav>
+  </details>
  </div>
 </header>
 
@@ -235,7 +325,9 @@ footer p {font-size:13px;color:#c8e0d7}
     <ul class="features">
      <li>Practical Accounting Training</li>
      <li>GST & TDS with Real Examples</li>
-     <li>Lifetime Recorded Course Access</li>
+     <li>21 Video Lessons + 105 Practical Questions</li>
+     <li>3-Hour Complete Recorded Course</li>
+     <li>Access while our course platform operates</li>
      <li>Online Exam & Certificate</li>
     </ul>
     <div class="hero-actions">
@@ -244,11 +336,13 @@ footer p {font-size:13px;color:#c8e0d7}
     </div>
   </div>
   <div class="preview-wrap">
-   <div class="preview">
-    <h2>TallyPrime + GST + TDS</h2>
-    <div class="play">▶</div>
-    <p>Hindi Recorded Course</p>
-    <p>Learn Anytime • Learn Anywhere</p>
+   <div class="preview" style="min-height:0;padding:20px;">
+    <a class="preview-link" href="#course" aria-label="Explore TallyPrime GST TDS course details">
+     <img class="hero-course-banner"
+      src="7%20Star%20Accounting%20Academy%20Course%20Banner.png"
+      alt="7 STAR Accounting Academy TallyPrime GST TDS complete recorded course banner">
+     <span class="hero-preview-note">View Course Details ↓</span>
+    </a>
    </div>
   </div>
  </div>
@@ -261,6 +355,13 @@ footer p {font-size:13px;color:#c8e0d7}
     <h2>What You Will Learn</h2>
     <p>Accounting की जरूरी Skills एक ही Course में।</p>
    </div>
+   <p class="course-intro">7 STAR Accounting Academy ka ₹99 Hindi recorded course accounting basics se lekar TallyPrime practical entries, GST, TDS aur final reports tak structured learning deta hai. Learn chapter by chapter and practice with tests.</p>
+    <div class="course-metrics" aria-label="Course at a glance">
+     <div class="metric"><strong>21</strong><span>Chapter-wise Lessons</span></div>
+     <div class="metric"><strong>105</strong><span>Practical MCQs</span></div>
+     <div class="metric"><strong>3 Hours</strong><span>Complete Course Video</span></div>
+     <div class="metric"><strong>₹99</strong><span>One-time Course Fee</span></div>
+    </div>
    <div class="cards">
     <div class="card">
      <div class="symbol">📘</div>
@@ -280,21 +381,92 @@ footer p {font-size:13px;color:#c8e0d7}
     <div class="card">
      <div class="symbol">🎥</div>
      <h3>Recorded Lessons</h3>
-     <p>अपनी सुविधा से Lessons बार-बार देखिए।</p>
+     <p>21 chapter-wise lessons aur alag 3-hour complete course video. Har chapter ke baad 5-question test.</p>
     </div>
     <div class="card">
      <div class="symbol">📝</div>
      <h3>Final Exam</h3>
-     <p>30 Questions का Online Examination। Passing Marks 60%।</p>
+     <p>30-question final exam. Passing marks 18 out of 30 (60%).</p>
     </div>
     <div class="card">
      <div class="symbol">🏆</div>
      <h3>Certificate</h3>
-     <p>Exam Pass करने पर PDF Certificate Email पर मिलेगा।</p>
+     <p>Final exam pass karne par PDF certificate registered email par bheja jata hai.</p>
     </div>
    </div>
+    <div class="section-title" style="margin:55px 0 25px;">
+     <div class="tag">FULL SYLLABUS</div>
+     <h2>21 Chapter-wise Video Lessons</h2>
+     <p>Har chapter ke baad 5 practical MCQ questions. 3/5 sahi jawab dene par lesson complete hota hai.</p>
+    </div>
+    <div class="course-outline">
+     <div class="outline-block">
+      <h3>📗 Module 01 — Accounting Fundamentals</h3>
+      <ol>
+       <li>What is Accounting? &amp; Types of Accounts</li>
+       <li>Modern Rules &amp; Journal Entry</li>
+       <li>What is GST?</li>
+       <li>What is TDS?</li>
+       <li>TallyPrime Installation</li>
+       <li>Company Creation</li>
+      </ol>
+     </div>
+     <div class="outline-block">
+      <h3>💻 Module 02 — Daily Practical Entries</h3>
+      <ol start="7">
+       <li>Business Start &amp; Capital Entry</li>
+       <li>Cash Deposit Entry</li>
+       <li>Cash Withdrawal Entry</li>
+       <li>Fixed Asset Entry</li>
+       <li>GST Purchase Entry</li>
+       <li>GST Sales Entry</li>
+       <li>Receipt &amp; Payment Entry</li>
+      </ol>
+     </div>
+     <div class="outline-block">
+      <h3>📊 Module 03 — GST, TDS &amp; Finalization</h3>
+      <ol start="14">
+       <li>Interstate Purchase &amp; Sales</li>
+       <li>Sales &amp; Purchase Returns</li>
+       <li>Electricity Expense Entry</li>
+       <li>TDS &amp; GST Settings</li>
+       <li>Salary Payable &amp; Salary Payment</li>
+       <li>TDS Payable &amp; TDS Payment</li>
+       <li>GSTR-1 &amp; GSTR-3B Reports</li>
+       <li>Account Finalization</li>
+      </ol>
+     </div>
+    </div>
+    <div class="course-cta">
+     <p>Also included: 3 study-material PDFs, learning progress dashboard, 30-mark final exam and certificate on passing.</p>
+     <a class="btn" href="register.html">Enroll in Complete Course — ₹99</a>
+     <p>Already registered? <a href="login.html" style="color:var(--teal);text-decoration:underline;">Student Login</a></p>
+    </div>
   </div>
  </section>
+
+  <section class="soft" id="about">
+   <div class="container about-layout">
+    <div class="about-brand">
+     <img src="Glossy%20Star%20Accounting%20Academy%20Logo.png" alt="7 STAR Accounting Academy original logo" loading="lazy">
+     <strong>7 STAR Accounting Academy</strong>
+     <span>Surat, Gujarat • Hindi Accounting Training</span>
+    </div>
+    <div class="about-copy">
+     <div class="tag">ABOUT OUR ACADEMY</div>
+     <h2>Practical Accounting Seekhiye, Confidence Ke Saath</h2>
+     <p>7 STAR Accounting Academy, Surat mein based ek accounting training academy hai. Hamara focus beginners, accounting job seekers aur business owners ko practical examples ke saath TallyPrime, GST aur TDS samjhana hai.</p>
+     <p>Hamare online recorded course mein 21 chapter-wise lessons, har lesson ke baad 5 practical questions, alag 3-hour revision course, study materials aur final examination shamil hain. Students apni learning progress account mein track kar sakte hain.</p>
+     <div class="about-points">
+      <div>Simple Hindi Explanations</div>
+      <div>Realistic Business Examples</div>
+      <div>Learn at Your Own Pace</div>
+      <div>Exam &amp; PDF Certificate</div>
+     </div>
+     <a class="btn" href="#contact">Contact Our Academy</a>
+    </div>
+   </div>
+  </section>
 
  <section class="soft" id="how">
   <div class="container">
@@ -316,16 +488,46 @@ footer p {font-size:13px;color:#c8e0d7}
     <div class="step">
      <strong>3</strong>
      <h3>Learn Online</h3>
-     <p>Payment Verify होने पर Recorded Course देखें।</p>
+     <p>Payment verify hone par 21 video lessons aur practical tests start karein.</p>
     </div>
     <div class="step">
      <strong>4</strong>
      <h3>Exam & Certificate</h3>
-     <p>Final Exam Pass करके Certificate प्राप्त करें।</p>
+     <p>30-mark final exam mein 18 marks laakar PDF certificate qualify karein.</p>
     </div>
    </div>
   </div>
  </section>
+
+  <section id="contact">
+   <div class="container">
+    <div class="section-title">
+     <div class="tag">GET IN TOUCH</div>
+     <h2>Contact 7 STAR Accounting Academy</h2>
+     <p>Course admission, payment ya learning-related questions? Hamse directly connect karein.</p>
+    </div>
+    <div class="contact-grid">
+     <div class="contact-card">
+      <h3>📍 Surat, Gujarat</h3>
+      <p>7 STAR Accounting Academy online recorded accounting course offer karti hai. Admission aur course-related help ke liye WhatsApp Business par message karein.</p>
+      <p><strong>Course:</strong> TallyPrime + GST + TDS (Hindi) — ₹99</p>
+      <div class="contact-actions">
+       <a class="btn" href="https://wa.me/message/H4UBW6L3BT2CJ1" target="_blank" rel="noopener noreferrer">💬 Ask on WhatsApp</a>
+       <a class="btn btn-outline" href="register.html">Enroll Now</a>
+      </div>
+     </div>
+     <div class="contact-card">
+      <h3>Follow &amp; Learn With Us</h3>
+      <p>Accounting tips, course information aur video lessons ke liye social media par connect karein.</p>
+      <div class="contact-actions">
+       <a class="btn btn-outline" href="https://www.instagram.com/7star_accounting_academy/" target="_blank" rel="noopener noreferrer">Instagram</a>
+       <a class="btn btn-outline" href="https://www.youtube.com/@my7staracademy" target="_blank" rel="noopener noreferrer">YouTube</a>
+      </div>
+      <p style="font-size:13px;">Already enrolled? <a href="login.html" style="text-decoration:underline;color:var(--teal)">Open Student Login</a></p>
+     </div>
+    </div>
+   </div>
+  </section>
 
  <section id="enroll">
   <div class="container">
@@ -341,16 +543,12 @@ footer p {font-size:13px;color:#c8e0d7}
      Register online, pay securely and get instant access after successful payment verification.<br>
      *Lifetime access is available while the course platform operates.
     </p>
+    <a href="register.html" class="btn">ENROLL NOW — ₹99</a>
+    <span class="small-login">Already registered? <a href="login.html">Student Login</a></span>
    </div>
   </div>
  </section>
 </main>
-
-<footer>
- <strong>7 STAR Accounting Academy</strong>
- <p>Learn Accounting • Build Your Future</p>
- <p>© 2026 7 STAR Accounting Academy</p>
-</footer>
 
 <!-- 7 STAR SOCIAL MEDIA SECTION -->
 <style>
@@ -488,5 +686,27 @@ footer p {font-size:13px;color:#c8e0d7}
 </a>
 <!-- END SOCIAL MEDIA SECTION -->
 
+<footer>
+ <strong>7 STAR Accounting Academy</strong>
+ <p>Learn Accounting • Build Your Future</p>
+ <div class="footer-links">
+  <a href="#home">Home</a>
+  <a href="#course">Course</a>
+  <a href="#about">About Us</a>
+  <a href="#how">How It Works</a>
+  <a href="#contact">Contact</a>
+  <a href="login.html">Student Login</a>
+ </div>
+ <p>© 2026 7 STAR Accounting Academy</p>
+</footer>
+
+<script>
+  document.querySelectorAll('.mobile-nav-panel a').forEach(function(link) {
+    link.addEventListener('click', function() {
+      var menu = document.getElementById('mobileNav');
+      if (menu) menu.open = false;
+    });
+  });
+</script>
 </body>
 </html>
