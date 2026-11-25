@@ -172,8 +172,8 @@ h1{font-size:30px}
       <div class="grid">
         <div class="card">
           <div class="icon">🎥</div>
-          <h2>Video Lectures</h2>
-          <p>Watch your recorded TallyPrime, GST and TDS lessons.</p>
+          <h2>3-Hour Complete Course</h2>
+          <p>Watch the complete recorded course in one video. Your 21 chapter-wise lessons and tests are tracked separately above.</p>
           
 
 <div style="position:relative;width:100%;aspect-ratio:16/9;">
@@ -716,13 +716,212 @@ document.addEventListener("DOMContentLoaded", function () {
     card.appendChild(button);
   });
 
-  // Only show unfinished lessons during testing
-  const params = new URLSearchParams(window.location.search);
-
-  if (params.get("lessonsPreview") === "1") {
-    section.style.display = "block";
-  }
+  // The learning section is revealed only after verified paid login
+  // by the learning-tests module below.
 });
+</script>
+
+<script type="module">
+// 7 STAR Accounting Academy — 21 chapter tests + Firebase progress
+// Your current authentication, payment, 3-hour video, and certificate scripts stay unchanged.
+import { getApp } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-app.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-auth.js";
+import { getFirestore, doc, getDoc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-firestore.js";
+
+const LESSON_TESTS = [[{"question":"Accounting ka main purpose kya hai?","options":["Business ke financial transactions ko record aur report karna","Sirf GST return bharna","Sirf cash rakhna","Sirf inventory kharidna"],"answer":0},{"question":"Business ne ₹20,000 ka laptop kharida. Laptop kis category mein aayega?","options":["Revenue","Asset","Liability","Capital withdrawal"],"answer":1},{"question":"Business ko supplier ke ₹8,000 dene hain. Ye kya hai?","options":["Income","Expense","Liability","Drawings"],"answer":2},{"question":"Customer ko maal bechne se business ke liye kya generate hota hai?","options":["Sales revenue","Loan","Capital","Drawings"],"answer":0},{"question":"Office ka kiraya business ke liye kis type ka account hai?","options":["Asset","Liability","Income","Expense"],"answer":3}],[{"question":"Owner ne ₹50,000 cash business mein lagaye. Sahi journal entry kaunsi hai?","options":["Capital Dr To Cash","Cash Dr To Capital","Purchase Dr To Capital","Bank Dr To Sales"],"answer":1},{"question":"Business ne ₹3,000 electricity bill cash diya. Kaunsa account debit hoga?","options":["Electricity Expense","Cash","Capital","Sales"],"answer":0},{"question":"Credit par ₹10,000 ka maal kharidne par kaunsa account credit hoga (GST ignore karein)?","options":["Cash","Sales","Supplier","Bank"],"answer":2},{"question":"Business ko customer se ₹5,000 cash mila, jo pehle se receivable tha. Kaunsa account debit hoga?","options":["Customer","Sales","Capital","Cash"],"answer":3},{"question":"Modern rules ke anusaar asset badhne par us account mein kya hota hai?","options":["Debit","Credit","Koi effect nahi","Income book hoti hai"],"answer":0}],[{"question":"Same state mein taxable sale par aam taur par kaunse GST components lagte hain?","options":["IGST","CGST aur SGST","TDS","Sirf cess"],"answer":1},{"question":"Do alag states ke beech taxable sale par aam taur par kaunsa GST lagta hai?","options":["SGST only","CGST only","IGST","Professional tax"],"answer":2},{"question":"Eligible business purchase par diya gaya GST, conditions poori hone par kya ban sakta hai?","options":["Input Tax Credit","Salary expense","Capital contribution","TDS payable"],"answer":0},{"question":"Customer se taxable sale par collect kiya gaya GST aam taur par kis naam se record hota hai?","options":["Input GST","Bank loan","Drawings","Output GST"],"answer":3},{"question":"GSTIN ka primary purpose kya hai?","options":["Bank IFSC batana","GST-registered taxpayer ko identify karna","Invoice ka net profit batana","Employee code batana"],"answer":1}],[{"question":"TDS ka full form kya hai?","options":["Tax Deducted at Source","Tax Deposit Statement","Trade Duty Surcharge","Tax Due on Sales"],"answer":0},{"question":"TDS deduct karne wale payer ki zimmedari kya hoti hai?","options":["Sirf invoice print karna","TDS ko sales mein add karna","Applicable TDS ko deposit aur report karna","TDS ko capital mein transfer karna"],"answer":2},{"question":"TDS deduct hone ke baad payee ko aam taur par kitna cash payment milta hai?","options":["Gross bill se zyada","Gross bill minus TDS","Sirf GST amount","Hamesha zero"],"answer":1},{"question":"Income Tax Act ki section 194-I ka general sambandh kis payment se hai?","options":["Interest","Salary","Goods sales","Rent"],"answer":3},{"question":"Income Tax Act ki section 194J aam taur par kis tarah ki payment se judi hai?","options":["Professional/technical fees","Cash deposit","Owner drawings","Bank transfer"],"answer":0}],[{"question":"TallyPrime ko install karne ke liye installer kahaan se lena behtar hai?","options":["Kisi anjaan file-sharing link se","Official Tally website se","Social media ke random attachment se","Unverified cracked software se"],"answer":1},{"question":"TallyPrime install hone ke baad pehla practical step kya ho sakta hai?","options":["Company create/select karna","Windows ko format karna","Ledger delete karna","Browser history saaf karna"],"answer":0},{"question":"TallyPrime Educational Mode ka main use kya hai?","options":["Bank account open karna","GSTIN generate karna","Learning aur practice karna","Windows activate karna"],"answer":2},{"question":"Software update se pehle company data ke liye kaunsi savdhani upyogi hai?","options":["Data folder delete karna","Password publicly share karna","Printer unplug karna","Company ka backup lena"],"answer":3},{"question":"TallyPrime setup mein company data location ka matlab kya hai?","options":["Student ka exam center","Jahaan accounting company files store hoti hain","Customer ka mobile number","GST tax rate"],"answer":1}],[{"question":"TallyPrime mein nai books shuru karne ke liye kya create karte hain?","options":["Company","Sales Voucher","Bank Deposit Slip","Stock Report"],"answer":0},{"question":"Company creation mein Financial Year Beginning ka use kya hai?","options":["Invoice font set karna","Printer select karna","Financial year ki shuruaat define karna","Discount calculate karna"],"answer":2},{"question":"Company ke State field ka ek important use kya hai?","options":["Employee salary fix karna","GST-related state information set karna","Stock quantity badhana","Bank interest set karna"],"answer":1},{"question":"Accounting entries record karne ke liye company mein kya sahi hona chahiye?","options":["Random date","Expired PDF","Wrong ledger name","Appropriate books beginning date"],"answer":3},{"question":"Nai practice company banane ke baad sabse pehle kis cheez ko verify karna upyogi hai?","options":["Company name aur financial details","Computer wallpaper","WhatsApp status","YouTube subtitles"],"answer":0}],[{"question":"Owner ne business mein ₹1,00,000 cash invest kiye. Capital ka balance kis side badhega?","options":["Debit","Credit","Koi effect nahi","Expense side"],"answer":1},{"question":"₹80,000 bank transfer se owner ka capital introduce hua. Kaunsa account debit hoga?","options":["Bank","Capital","Purchases","Sales"],"answer":0},{"question":"Owner ne ₹20,000 ki office furniture personal funds se directly business ko di. Accounting mein kaunsa asset badhega?","options":["Cash","Stock","Furniture","Debtors"],"answer":2},{"question":"Capital introduce hone se business ki kaunsi category badhti hai?","options":["Sales","Expenses","Purchase Return","Owner's Equity"],"answer":3},{"question":"Owner ne ₹40,000 cash lagaye. Sahi entry kya hai?","options":["Capital Dr 40,000 To Cash","Cash Dr 40,000 To Capital","Sales Dr 40,000 To Cash","Expense Dr 40,000 To Capital"],"answer":1}],[{"question":"Business cash ₹15,000 bank mein deposit karta hai. Kaunsa account debit hoga?","options":["Cash","Sales","Bank","Capital"],"answer":2},{"question":"₹25,000 cash bank mein deposit hone par Cash A/c mein kya entry hogi?","options":["Credit ₹25,000","Debit ₹25,000","No entry","Sales entry"],"answer":0},{"question":"Cash-to-bank deposit kis type ka transaction hai?","options":["Sales","Purchase","Salary","Contra"],"answer":3},{"question":"₹12,000 cash bank mein deposit karne se total assets par kya impact hota hai?","options":["₹12,000 badhte hain","Total assets same rehte hain","₹12,000 ghatte hain","Income badhti hai"],"answer":1},{"question":"Bank mein ₹5,000 cash deposit ke liye kaunsi entry sahi hai?","options":["Cash Dr To Bank","Capital Dr To Bank","Bank Dr To Cash","Sales Dr To Cash"],"answer":2}],[{"question":"Office use ke liye bank se ₹10,000 cash nikale. Kaunsa account debit hoga?","options":["Cash","Bank","Sales","Supplier"],"answer":0},{"question":"Office use withdrawal mein Bank A/c ₹10,000 ka kya hoga?","options":["Debit","Credit","Income","No entry"],"answer":1},{"question":"Bank-to-cash withdrawal for business use ka voucher type kya hai?","options":["Sales","Purchase","Credit Note","Contra"],"answer":3},{"question":"Owner ne bank se ₹5,000 personal use ke liye nikale. Kaunsa account debit hoga?","options":["Rent","Purchases","Drawings","Sales"],"answer":2},{"question":"₹6,000 bank se office cash ke liye nikalne par total assets?","options":["Same rehte hain","₹6,000 ghatte hain","₹6,000 badhte hain","Profit ₹6,000 badhta hai"],"answer":0}],[{"question":"Business ne office ke liye printer ₹18,000 cash mein kharida (tax ignore karein). Printer kya hai?","options":["Sales","Fixed Asset","Expense payable","Drawings"],"answer":1},{"question":"Office chair ₹5,000 cash mein kharidi. Sahi entry kaunsi hai?","options":["Furniture Dr To Cash","Cash Dr To Furniture","Salary Dr To Cash","Sales Dr To Furniture"],"answer":0},{"question":"Fixed asset ki useful life mein cost allocate karne ki accounting process kya hai?","options":["Commission","Discount","Depreciation","GST return"],"answer":2},{"question":"Asset ke liye credit purchase karne par supplier ledger generally kya hota hai?","options":["Debit","Income","Equity","Credit"],"answer":3},{"question":"Office machinery ki purchase ko normally kis account group mein record karenge?","options":["Fixed Assets","Direct Income","Sales Accounts","Current Liabilities"],"answer":0}],[{"question":"Registered seller se credit par ₹10,000 + ₹1,800 GST ke eligible goods kharide. Total payable kitna?","options":["₹10,000","₹11,800","₹1,800","₹8,200"],"answer":1},{"question":"Purchase invoice mein eligible input GST ko aam taur par kis type ke ledger mein record karte hain?","options":["Output GST","Capital","Input GST","Salary"],"answer":2},{"question":"Credit purchase of goods kaunse account ko credit karega?","options":["Supplier","Purchases","Input GST","Cash"],"answer":0},{"question":"₹5,000 purchase + 18% GST ka tax kitna hai?","options":["₹500","₹1,200","₹450","₹900"],"answer":3},{"question":"Purchase Return par input tax credit ka kya effect ho sakta hai?","options":["Hamesha double hota hai","Applicable ITC reverse/adjust karna pad sakta hai","Salary ban jata hai","Koi records nahi chahiye"],"answer":1}],[{"question":"Credit sale ₹20,000 + 18% GST hai. Customer receivable kitna hoga?","options":["₹20,000","₹3,600","₹23,600","₹16,400"],"answer":2},{"question":"Taxable sales invoice par collected GST ko kis ledger category mein record karte hain?","options":["Output GST","Input GST","Capital","Depreciation"],"answer":0},{"question":"Credit sale mein customer ledger generally kis side record hota hai?","options":["Credit","Debit","No entry","Income"],"answer":1},{"question":"₹5,000 taxable sales par 18% GST kitna hai?","options":["₹500","₹1,500","₹180","₹900"],"answer":3},{"question":"Credit sale ke baad business ke liye customer ke paas outstanding kya hota hai?","options":["Supplier payable","Bank overdraft","Trade receivable","Drawings"],"answer":2}],[{"question":"Customer ke outstanding ₹12,000 bank mein receive hue. Kaunsa account debit hoga?","options":["Bank","Customer","Sales","Capital"],"answer":0},{"question":"Supplier ko ₹8,000 bank se payment hua. Kaunsa account debit hoga?","options":["Bank","Supplier","Sales","Income"],"answer":1},{"question":"Customer receipt ko record karne ke liye typically kaunsa voucher use hoga?","options":["Purchase","Sales","Receipt","Debit Note"],"answer":2},{"question":"Supplier payment ke liye typically kaunsa voucher use hoga?","options":["Contra","Sales","Journal","Payment"],"answer":3},{"question":"Customer ne ₹25,000 ka pura outstanding pay kiya. Uska receivable balance?","options":["Zero, agar koi aur due nahi hai","₹25,000 zyada","₹50,000","Income ledger mein transfer"],"answer":0}],[{"question":"Gujarat se Maharashtra taxable goods sale par aam taur par kaunsa GST lagega?","options":["CGST only","SGST only","IGST","TDS"],"answer":2},{"question":"Gujarat mein Gujarat ke customer ko taxable goods supply par aam taur par kaunsa GST split hota hai?","options":["CGST + SGST","IGST only","TDS + GST","Customs Duty"],"answer":0},{"question":"Interstate taxable purchase par eligible input tax usually kis naam se record hoga?","options":["Output CGST","Input IGST","Salary","Capital"],"answer":1},{"question":"₹10,000 ki interstate sale par assumed IGST rate 18% ho, tax kitna?","options":["₹800","₹1,000","₹2,000","₹1,800"],"answer":3},{"question":"GST mein interstate vs intrastate treatment samajhne ke liye kis cheez ka role hota hai?","options":["Employee age","Printer model","Place of supply aur supplier location","Company logo"],"answer":2}],[{"question":"Customer ko pehle becha maal return aane par seller typically kaunsa note issue karta hai?","options":["Credit Note","Debit Note","Payment Voucher","Contra"],"answer":0},{"question":"Supplier ko purchased goods return karne par buyer ki books mein kaunsa voucher commonly use hota hai?","options":["Receipt","Debit Note","Sales","Contra"],"answer":1},{"question":"Sales Return se net sales value aam taur par kya hoti hai?","options":["Badhti hai","Same rahti hai","Ghat-ti hai","Loan ban jati hai"],"answer":2},{"question":"₹10,000 ki credit sale mein se ₹2,000 ka maal return hua (tax ignore). Customer balance ab?","options":["₹12,000","₹10,000","₹2,000","₹8,000"],"answer":3},{"question":"₹5,000 credit purchase return se supplier payable ka kya effect hoga?","options":["₹5,000 kam","₹5,000 badhega","Koi effect nahi","₹10,000 badhega"],"answer":0}],[{"question":"May ka electricity bill ₹4,000 due hai par paid nahi. Kaunsa account debit hoga?","options":["Cash","Electricity Expense","Capital","Sales"],"answer":1},{"question":"Unpaid electricity bill ko record karte waqt credit kis account mein hoga?","options":["Bank","Sales","Electricity Payable","Furniture"],"answer":2},{"question":"Next month electricity payable ₹4,000 bank se chuka diya. Kaunsa account debit hoga?","options":["Electricity Payable","Bank","Sales","Capital"],"answer":0},{"question":"Bill May ka hai aur payment June mein hua. Accrual accounting mein expense generally kis month ka hoga?","options":["June only","Dono months mein","Kabhi nahi","May"],"answer":3},{"question":"₹3,000 electricity bill paid via bank on same day. Sahi entry kaunsi hai?","options":["Bank Dr To Electricity","Electricity Expense Dr To Bank","Capital Dr To Bank","Cash Dr To Sales"],"answer":1}],[{"question":"TallyPrime mein company ke GST features enable karne ke liye kis type ki setting use hoti hai?","options":["Payroll report","Company statutory/taxation features","Stock summary","Print preview"],"answer":1},{"question":"GST invoice banate waqt relevant party ke kaunse details verify karne chahiye?","options":["Company logo color","YouTube ID","GST registration aur state details","Office table count"],"answer":2},{"question":"TDS calculation ke liye relevant expense ledger mein kya sahi set karna zaroori ho sakta hai?","options":["Applicable TDS nature/settings","Logo size","Cash denomination","Printer margin"],"answer":0},{"question":"TDS apply karne se pehle kis baat ko verify karna important hai?","options":["Browser cookies","Invoice font","Computer brightness","Applicable section, threshold aur rate"],"answer":3},{"question":"GST aur TDS settings badalne ke baad kya practical verification karna chahiye?","options":["Saare ledgers delete karna","Sample voucher aur tax calculation check karna","Company ko reset karna","Password share karna"],"answer":1}],[{"question":"Employee ki earned salary ₹30,000 payable hai, abhi paid nahi. Salary Expense A/c ka kya hoga?","options":["Debit","Credit","Sales","No entry"],"answer":0},{"question":"Salary due record karte waqt credit kis account mein hoga (deductions ignore)?","options":["Bank","Capital","Salary Payable","Furniture"],"answer":2},{"question":"Salary Payable ₹25,000 bank se pay kiya. Kaunsa account debit hoga?","options":["Salary Expense again","Salary Payable","Bank","Sales"],"answer":1},{"question":"Salary accrue hone par business ka kya badhta hai?","options":["Inventory","Sales","Cash","Expense aur liability"],"answer":3},{"question":"Salary payable ₹15,000 thi. ₹15,000 full bank payment ke baad payable balance?","options":["Zero","₹30,000","₹15,000","₹7,500"],"answer":0}],[{"question":"Vendor bill ₹50,000 aur assumed TDS 10% hai. TDS kitna?","options":["₹500","₹50,000","₹5,000","₹45,000"],"answer":2},{"question":"₹50,000 bill par ₹5,000 TDS deduct hua. Vendor ko net kitna payable (other taxes ignore)?","options":["₹50,000","₹45,000","₹55,000","₹5,000"],"answer":1},{"question":"Deducted TDS ko government ko deposit karne par kaunsa account debit hoga?","options":["TDS Payable","Bank","Sales","Capital"],"answer":0},{"question":"TDS payable ₹7,000 bank se deposit kiya. Bank A/c mein kya hoga?","options":["Debit ₹7,000","No entry","Credit ₹14,000","Credit ₹7,000"],"answer":3},{"question":"TDS deducted par abhi government ko deposit nahi hua. Balance sheet mein ye aam taur par kya hai?","options":["Asset","Revenue","Current Liability","Drawings"],"answer":2}],[{"question":"GSTR-1 ka primary purpose kya hai?","options":["Outward supplies ki details report karna","Bank statement banana","Staff attendance report","TDS challan generate karna"],"answer":0},{"question":"GSTR-3B ko aam taur par kis tarah ka return maana jata hai?","options":["Salary voucher","Summary GST return","Fixed Asset register","Bank deposit slip"],"answer":1},{"question":"GSTR-1 prepare karte waqt taxable sales invoices ki details mein kya verify karenge?","options":["Printer driver","Employee leave","Invoice number, date aur tax details","YouTube password"],"answer":2},{"question":"GSTR-3B calculation mein eligible ITC ka kya role hai?","options":["Owner salary","Loan principal","Cash drawings","Tax liability calculation mein adjustment"],"answer":3},{"question":"TallyPrime report dekhna aur GST portal par return successfully file karna kya same cheez hai?","options":["Nahi, filing alag process hai","Haan, report dekhna hi filing hai","Haan, ledger banana filing hai","Haan, login karna hi filing hai"],"answer":0}],[{"question":"Trial Balance ka primary use kya hai?","options":["Cash deposit karna","Debit aur credit ledger balances ki arithmetic equality check karna","GST number allot karna","YouTube video edit karna"],"answer":1},{"question":"Profit & Loss statement mein generally kya dikhaya jata hai?","options":["Sirf fixed assets","Sirf owners","Period ki income aur expenses","Sirf bank balance"],"answer":2},{"question":"Balance Sheet kya show karti hai?","options":["Specified date par assets, liabilities aur equity","Sirf sales invoices","Sirf cash payments","Monthly video views"],"answer":0},{"question":"Financial finalization se pehle bank reconciliation ka purpose kya hai?","options":["Logo design karna","Employee attendance","GST registration cancel karna","Book balance ko bank records se match karna"],"answer":3},{"question":"Year-end reports finalize karne se pehle kaunsi practice upyogi hai?","options":["Pending entries ignore karna","Adjustments aur backup verify karna","Sab vouchers delete karna","Profit ko manually double karna"],"answer":1}]];
+const PASS_MARKS = 3;
+const TOTAL_LESSONS = LESSON_TESTS.length;
+const $ = (id) => document.getElementById(id);
+const escapeHtml = (value) => String(value).replace(/[&<>"']/g, (ch) => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]));
+let progressData = { lessons: {} };
+let progressRef = null;
+let selectedLesson = -1;
+let currentlySaving = false;
+let currentUserId = null;
+let accessLoaded = false;
+
+function renderProgress(cards) {
+  let completed = 0;
+  cards.forEach((card, i) => {
+    const record = progressData.lessons?.[String(i + 1)] || null;
+    const passed = record?.passed === true || (record && Number(record.bestScore) >= PASS_MARKS);
+    if (passed) completed++;
+    const status = card.querySelector("span");
+    if (status) {
+      status.textContent = passed
+        ? `✓ Completed (${Number(record.bestScore)}/5)`
+        : (record?.bestScore != null ? `↻ Try Again (${Number(record.bestScore)}/5)` : "○ Not Completed");
+      status.style.background = passed ? "#dbf3e8" : "#edf5f2";
+      status.style.color = passed ? "#146b42" : "#0c6265";
+    }
+    const button = card.querySelector(".lesson-test-button");
+    if (button) button.textContent = passed ? "📝 Retake Practical Test" : "📝 Take 5-Question Test";
+  });
+  const percent = Math.round((completed / TOTAL_LESSONS) * 100);
+  $("completedCount").textContent = completed;
+  $("progressPercent").textContent = percent;
+  $("progressBar").style.width = `${percent}%`;
+  $("progressBar").setAttribute("role", "progressbar");
+  $("progressBar").setAttribute("aria-valuenow", String(percent));
+  $("progressBar").setAttribute("aria-valuemin", "0");
+  $("progressBar").setAttribute("aria-valuemax", "100");
+}
+
+function updateMessage(message, isError=false) {
+  const node = $("learningSaveStatus");
+  if (node) {
+    node.textContent = message;
+    node.style.color = isError ? "#ab3232" : "#56756f";
+  }
+}
+
+function renderTest(index) {
+  selectedLesson = index;
+  const panel = $("lessonQuizPanel");
+  panel.style.display = "block";
+  const lessonTitle = document.querySelectorAll("#chapterLessons > div")[index]?.querySelector("strong")?.textContent?.trim() || `Part ${index + 1}`;
+  const questions = LESSON_TESTS[index];
+  panel.innerHTML = `
+    <h3 style="margin-top:0;color:#07383a;">📝 Practical Test — ${escapeHtml(lessonTitle)}</h3>
+    <p style="margin:6px 0 14px;color:#56756f;">5 Questions · Passing 3/5 · Unlimited Attempts. Progress is recorded after your result is saved.</p>
+    <form id="lessonTestForm">
+      ${questions.map((q, qIndex) => `
+        <fieldset style="margin:0 0 15px;padding:14px;border:1px solid #d8e9e2;border-radius:12px;min-width:0;">
+          <legend style="padding:0 5px;font-weight:bold;">Q${qIndex + 1}. ${escapeHtml(q.question)}</legend>
+          ${q.options.map((option, optionIndex) => `
+            <label style="display:flex;gap:9px;align-items:flex-start;margin:11px 0;cursor:pointer;line-height:1.4;">
+              <input type="radio" name="q${qIndex}" value="${optionIndex}" style="margin-top:3px;flex-shrink:0;" required>
+              <span>${escapeHtml(option)}</span>
+            </label>
+          `).join("")}
+        </fieldset>
+      `).join("")}
+      <button id="submitLessonTest" type="submit">Submit Practical Test</button>
+      <div id="lessonTestResult" role="status" aria-live="polite" style="margin-top:12px;font-weight:600;"></div>
+    </form>`;
+  $("lessonTestForm").addEventListener("submit", (event) => submitTest(event, index));
+  panel.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+async function submitTest(event, index) {
+  event.preventDefault();
+  if (currentlySaving || !accessLoaded || selectedLesson !== index || !progressRef) return;
+  const form = event.currentTarget;
+  const choices = LESSON_TESTS[index].map((question, questionIndex) => {
+    const picked = form.querySelector(`input[name="q${questionIndex}"]:checked`);
+    return picked ? Number(picked.value) : -1;
+  });
+  if (choices.includes(-1)) { $("lessonTestResult").textContent = "Please answer all 5 questions."; return; }
+  const score = choices.reduce((total, answer, questionIndex) => total + (answer === LESSON_TESTS[index][questionIndex].answer ? 1 : 0), 0);
+  const passed = score >= PASS_MARKS;
+  const result = $("lessonTestResult");
+  const submitButton = $("submitLessonTest");
+  submitButton.disabled = true;
+  currentlySaving = true;
+  result.style.color = "#56756f";
+  result.textContent = `Your result: ${score}/5. Saving to Firebase...`;
+  try {
+    // Never write paymentStatus/courseAccess in the student document.
+    // Store quiz progress only in the student's dedicated subcollection document.
+    const old = progressData.lessons?.[String(index + 1)] || {};
+    const entry = {
+      bestScore: Math.max(Number(old.bestScore) || 0, score),
+      passed: old.passed === true || passed,
+      attempts: (Number(old.attempts) || 0) + 1,
+      lastScore: score,
+      updatedAt: serverTimestamp()
+    };
+    await setDoc(progressRef, {
+      lessons: { [String(index + 1)]: entry },
+      updatedAt: serverTimestamp()
+    }, { merge: true });
+    if (currentUserId !== progressRef.path.split("/")[1]) return;
+    progressData.lessons = progressData.lessons || {};
+    progressData.lessons[String(index + 1)] = { ...entry, updatedAt: new Date() };
+    renderProgress(Array.from($("chapterLessons").children));
+    result.style.color = passed ? "#146b42" : "#ab6420";
+    result.textContent = passed
+      ? `✓ ${score}/5 — PASSED! Lesson complete. Progress saved to Firebase.`
+      : `${score}/5 — Need 3/5 to pass. Result saved; please try again.`;
+    updateMessage("✓ Your learning progress is saved in your student account.");
+  } catch (error) {
+    console.error("Failed to save chapter test progress", error);
+    result.style.color = "#ab3232";
+    result.textContent = `${score}/5 — Could not save progress. Check your internet/Firebase permissions, then press Submit again. This lesson is not marked complete yet.`;
+    updateMessage("⚠ Learning progress saving is not enabled. Firebase security rules may need updating.", true);
+  } finally {
+    currentlySaving = false;
+    submitButton.disabled = false;
+  }
+}
+
+function buildUI() {
+  const section = $("learningSection");
+  const chapters = $("chapterLessons");
+  if (!section || !chapters) return;
+  const cards = Array.from(chapters.children);
+  if (cards.length !== TOTAL_LESSONS) {
+    console.warn("Cannot initialize quizzes: expected 21 lesson cards.");
+    return;
+  }
+  const message = document.createElement("p");
+  message.id = "learningSaveStatus";
+  message.className = "notice";
+  message.textContent = "Checking your lesson progress...";
+  const barParent = $("progressBar").parentElement;
+  barParent.insertAdjacentElement("afterend", message);
+
+  const testPanel = document.createElement("div");
+  testPanel.id = "lessonQuizPanel";
+  testPanel.className = "card";
+  testPanel.style.cssText = "display:none;background:#f9fcfa;padding:20px;margin:16px 0;";
+  chapters.parentNode.insertBefore(testPanel, chapters);
+
+  cards.forEach((card, index) => {
+    const testButton = document.createElement("button");
+    testButton.type = "button";
+    testButton.className = "lesson-test-button";
+    testButton.style.cssText = "margin:12px 0 0 8px;background:#286e65;padding:11px 16px;";
+    testButton.textContent = "📝 Take 5-Question Test";
+    testButton.addEventListener("click", () => renderTest(index));
+    card.appendChild(testButton);
+  });
+
+  const auth = getAuth(getApp());
+  const db = getFirestore(getApp());
+  onAuthStateChanged(auth, async (user) => {
+    accessLoaded = false;
+    currentUserId = user?.uid || null;
+    section.style.display = "none";
+    if (!user) return;
+    try {
+      const studentSnapshot = await getDoc(doc(db, "students", user.uid));
+      if (currentUserId !== user.uid || !studentSnapshot.exists()) return;
+      const student = studentSnapshot.data();
+      if (student.courseAccess !== true || student.paymentStatus !== "paid") return;
+      progressRef = doc(db, "students", user.uid, "learningProgress", "course");
+      try {
+        const progressSnapshot = await getDoc(progressRef);
+        if (currentUserId !== user.uid) return;
+        progressData = progressSnapshot.exists() ? progressSnapshot.data() : { lessons: {} };
+        progressData.lessons = progressData.lessons || {};
+        updateMessage("✓ Learning progress connected to your student account.");
+      } catch (error) {
+        progressData = { lessons: {} };
+        updateMessage("⚠ Unable to load saved progress. Firebase rules may need updating.", true);
+        console.error("Could not load learning progress", error);
+      }
+      accessLoaded = true;
+      renderProgress(cards);
+      section.style.display = "block";
+    } catch (error) {
+      console.error("Could not verify access for chapter tests", error);
+    }
+  });
+}
+
+if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", buildUI);
+else buildUI();
 </script>
 
 </body>
