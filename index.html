@@ -350,5 +350,141 @@ footer p {font-size:13px;color:#c8e0d7}
  <p>© 2026 7 STAR Accounting Academy</p>
 </footer>
 
+<!-- 7 STAR SOCIAL MEDIA SECTION -->
+<style>
+.star-social-section {
+  background: #ffffff;
+  padding: 28px 15px;
+  text-align: center;
+  border-top: 1px solid #d8e9e2;
+}
+
+.star-social-section h3 {
+  color: #07383a;
+  margin: 0 0 18px;
+}
+
+.star-social-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.star-social-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 12px 18px;
+  border: 1px solid #d8e9e2;
+  border-radius: 12px;
+  background: #edf5f2;
+  color: #07383a;
+  text-decoration: none;
+  font-weight: bold;
+  transition: transform .2s;
+}
+
+.star-social-links a:hover {
+  transform: translateY(-3px);
+}
+
+.star-social-links svg {
+  width: 22px;
+  height: 22px;
+}
+
+.star-whatsapp-float {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  background: #199d62;
+  color: white;
+  padding: 13px 17px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: bold;
+  box-shadow: 0 5px 20px #0003;
+}
+
+.star-whatsapp-float svg {
+  width: 23px;
+  height: 23px;
+}
+
+@media(max-width:600px) {
+  .star-whatsapp-float {
+    right: 12px;
+    bottom: 12px;
+    padding: 12px;
+  }
+  .star-whatsapp-float span {
+    display: none;
+  }
+}
+</style>
+
+<section class="star-social-section">
+  <h3>Connect with 7 STAR Accounting Academy</h3>
+
+  <div class="star-social-links">
+
+    <a href="https://www.instagram.com/7star_accounting_academy/"
+       target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24" fill="none"
+           stroke="#C13584" stroke-width="2">
+        <rect x="2" y="2" width="20" height="20" rx="5"/>
+        <circle cx="12" cy="12" r="4"/>
+        <circle cx="17.5" cy="6.5" r="1" fill="#C13584"/>
+      </svg>
+      Instagram
+    </a>
+
+    <a href="https://www.youtube.com/@my7staracademy"
+       target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24">
+        <rect x="1" y="4" width="22" height="16"
+              rx="5" fill="#FF0000"/>
+        <path d="M10 8L17 12L10 16Z" fill="white"/>
+      </svg>
+      YouTube
+    </a>
+
+    <a href="https://wa.me/message/H4UBW6L3BT2CJ1"
+       target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24" fill="none"
+           stroke="#199d62" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20.5 11.5a8.5 8.5 0 0 1-12.6 7.5L3 20l1.3-4.7a8.5 8.5 0 1 1 16.2-3.8Z"/>
+        <path d="M8.5 8.5c.5 3 3.5 6 7 7l1.5-1.5-2.5-1.5-1.2 1.1a7 7 0 0 1-2.9-2.9l1.1-1.2L10 7Z"/>
+      </svg>
+      WhatsApp
+    </a>
+
+  </div>
+</section>
+
+<!-- FLOATING WHATSAPP BUTTON -->
+<a class="star-whatsapp-float"
+   href="https://wa.me/message/H4UBW6L3BT2CJ1"
+   target="_blank"
+   rel="noopener noreferrer"
+   aria-label="Chat on WhatsApp">
+
+  <svg viewBox="0 0 24 24" fill="none"
+       stroke="white" stroke-width="2"
+       stroke-linecap="round" stroke-linejoin="round">
+    <path d="M20.5 11.5a8.5 8.5 0 0 1-12.6 7.5L3 20l1.3-4.7a8.5 8.5 0 1 1 16.2-3.8Z"/>
+    <path d="M8.5 8.5c.5 3 3.5 6 7 7l1.5-1.5-2.5-1.5-1.2 1.1a7 7 0 0 1-2.9-2.9l1.1-1.2L10 7Z"/>
+  </svg>
+
+  <span>Chat on WhatsApp</span>
+</a>
+<!-- END SOCIAL MEDIA SECTION -->
+
 </body>
 </html>
