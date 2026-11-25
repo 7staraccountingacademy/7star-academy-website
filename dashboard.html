@@ -595,5 +595,135 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script>
 
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const section = document.getElementById("learningSection");
+  const lessons = document.getElementById("chapterLessons");
+
+  if (!section || !lessons) return;
+
+  const cards = Array.from(lessons.children);
+  if (cards.length !== 21) return;
+
+  const playlistId = "PLHZM2lzT7RXQ";
+
+  const panel = document.createElement("div");
+  panel.style.cssText = "display:none;margin:20px 0;";
+
+  panel.innerHTML = `
+    <h3 id="activeLessonTitle"></h3>
+
+    <div style="width:100%;aspect-ratio:16/9;
+                background:#07383a;border-radius:14px;
+                overflow:hidden;">
+      <div id="lessonYoutubePlayer"></div>
+    </div>
+
+    <p id="lessonPlayerStatus"
+       style="font-size:13px;color:#56756f;">
+    </p>
+  `;
+
+  lessons.parentNode.insertBefore(panel, lessons);
+
+  const heading = panel.querySelector("#activeLessonTitle");
+  const status = panel.querySelector("#lessonPlayerStatus");
+
+  let player = null;
+  let ready = false;
+  let selectedIndex = 0;
+  let loading = false;
+
+  function loadSelectedVideo() {
+    if (!ready) return;
+
+    player.loadPlaylist({
+      listType: "playlist",
+      list: playlistId,
+      index: selectedIndex
+    });
+  }
+
+  function createPlayer() {
+    if (player) return;
+
+    player = new YT.Player("lessonYoutubePlayer", {
+      width: "100%",
+      height: "100%",
+      playerVars: {
+        listType: "playlist",
+        list: playlistId,
+        playsinline: 1,
+        origin: window.location.origin
+      },
+      events: {
+        onReady: function () {
+          ready = true;
+          status.textContent = "";
+          loadSelectedVideo();
+        },
+        onError: function () {
+          status.textContent =
+            "Video load nahi hua. Playlist link check karein.";
+        }
+      }
+    });
+  }
+
+  cards.forEach(function (card, index) {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.textContent = "▶ Watch Part " +
+      String(index + 1).padStart(2, "0");
+
+    button.style.cssText =
+      "margin-top:12px;padding:11px 18px;" +
+      "background:#0c6265;color:white;" +
+      "border:0;border-radius:8px;" +
+      "font-weight:bold;cursor:pointer;";
+
+    button.onclick = function () {
+      selectedIndex = index;
+      heading.textContent =
+        card.querySelector("strong").textContent.trim();
+
+      panel.style.display = "block";
+      panel.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+
+      if (ready) {
+        loadSelectedVideo();
+      } else if (window.YT && window.YT.Player) {
+        createPlayer();
+      } else if (!loading) {
+        loading = true;
+        status.textContent = "YouTube player loading...";
+
+        window.onYouTubeIframeAPIReady = createPlayer;
+
+        const script = document.createElement("script");
+        script.src = "https://www.youtube.com/iframe_api";
+        script.onerror = function () {
+          status.textContent =
+            "YouTube player load nahi hua.";
+        };
+        document.body.appendChild(script);
+      }
+    };
+
+    card.appendChild(button);
+  });
+
+  // Only show unfinished lessons during testing
+  const params = new URLSearchParams(window.location.search);
+
+  if (params.get("lessonsPreview") === "1") {
+    section.style.display = "block";
+  }
+});
+</script>
+
 </body>
 </html>
