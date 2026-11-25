@@ -254,8 +254,9 @@ footer .footer-links {display:flex;justify-content:center;flex-wrap:wrap;gap:18p
 footer .footer-links a:hover {text-decoration:underline}
 :focus-visible {outline:3px solid #459879;outline-offset:3px}
 @media (max-width:1050px) {
-  .menu {gap:16px}
-  .menu a {font-size:12px}
+  .menu a:not(.btn) {display:none}
+  .menu {gap:0}
+  .mobile-nav {display:block;margin-left:auto}
 }
 @media (max-width:850px) {
   .menu a:not(.btn) {display:none}
@@ -278,6 +279,48 @@ footer .footer-links a:hover {text-decoration:underline}
   .outline-block {padding:18px}
   .contact-card {padding:20px}
 }
+
+/* Founder, trainer and academy vision */
+.trainer-section {background:#fff;padding:85px 0;}
+.trainer-section .section-title {max-width:780px;margin:0 auto 36px;}
+.trainer-section .section-title p {font-size:16px;}
+.trainer-profile {display:grid;grid-template-columns:minmax(270px,.9fr) minmax(0,1.2fr);gap:34px;align-items:stretch;}
+.trainer-photo-card {margin:0;background:#f3faf6;border:1px solid #d7e8df;border-radius:20px;overflow:hidden;box-shadow:0 12px 32px #07383a15;}
+.trainer-photo-card img {display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:center 22%;}
+.trainer-photo-card figcaption {background:#07383a;color:#fff;padding:22px 24px;display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;}
+.trainer-photo-card figcaption strong {font-size:17px;}
+.trainer-photo-card figcaption span {font-size:12px;color:#ddf5ea;line-height:1.5;}
+.trainer-bio {border:1px solid #daeae3;border-radius:20px;background:#fff;padding:32px;box-shadow:0 12px 32px #07383a0d;}
+.trainer-bio h3 {font-size:clamp(28px,3vw,38px);margin:9px 0 7px;color:var(--dark);}
+.trainer-role {font-size:15px;font-weight:700;color:var(--teal);margin:0 0 18px;}
+.trainer-intro {line-height:1.86;color:#466761;margin:0 0 23px;font-size:15px;}
+.trainer-experience {background:#f2faf6;border:1px solid #d9ebe1;border-radius:14px;padding:21px 23px;margin:20px 0;}
+.trainer-experience h4,.trainer-vision h4 {font-size:19px;color:var(--dark);margin:0 0 12px;}
+.trainer-experience ul {margin:0;padding-left:20px;color:#486a63;font-size:14px;line-height:1.85;}
+.trainer-experience li {padding:2px 0;}
+.trainer-vision {border-left:4px solid var(--teal);padding:6px 0 6px 19px;margin-top:23px;}
+.trainer-vision p {line-height:1.8;color:#486a63;font-size:15px;margin:0;}
+.trainer-leadership {display:grid;grid-template-columns:1.25fr 1fr;gap:23px;margin-top:25px;}
+.trainer-leadership-card {background:#f3faf6;border:1px solid #d9ebe1;border-radius:18px;padding:27px 29px;}
+.trainer-leadership-card h3 {font-size:21px;margin:8px 0 13px;}
+.trainer-leadership-card p {margin:0;color:#466761;font-size:15px;line-height:1.85;}
+.trainer-cofounder {display:flex;align-items:flex-start;gap:17px;}
+.trainer-cofounder-icon {flex:0 0 58px;width:58px;height:58px;border-radius:16px;display:grid;place-items:center;background:#d5eee0;color:#07383a;font-size:20px;font-weight:800;}
+.trainer-cofounder h3 {margin:0 0 5px;}
+.trainer-cofounder .trainer-role {display:block;margin-bottom:13px;}
+@media (max-width:850px) {
+  .trainer-profile {grid-template-columns:1fr;max-width:650px;margin:auto;}
+  .trainer-photo-card img {max-height:560px;object-position:center 25%;}
+  .trainer-leadership {grid-template-columns:1fr;}
+}
+@media (max-width:550px) {
+  .trainer-section {padding:55px 0;}
+  .trainer-bio {padding:22px 19px;}
+  .trainer-photo-card figcaption {padding:17px 19px;}
+  .trainer-leadership-card {padding:22px 20px;}
+  .trainer-cofounder-icon {width:48px;height:48px;flex-basis:48px;}
+  .trainer-section .section-title {margin-bottom:25px;}
+}
 </style>
 </head>
 <body>
@@ -293,6 +336,7 @@ footer .footer-links a:hover {text-decoration:underline}
    <a href="#home">HOME</a>
    <a href="#course">COURSE</a>
    <a href="#about">ABOUT US</a>
+   <a href="#trainer">OUR TRAINER</a>
    <a href="#how">HOW IT WORKS</a>
    <a href="#contact">CONTACT</a>
    <a href="login.html">STUDENT LOGIN</a>
@@ -304,6 +348,7 @@ footer .footer-links a:hover {text-decoration:underline}
     <a href="#home">HOME</a>
     <a href="#course">COURSE</a>
     <a href="#about">ABOUT US</a>
+    <a href="#trainer">OUR TRAINER</a>
     <a href="#how">HOW IT WORKS</a>
     <a href="#contact">CONTACT</a>
     <a href="login.html">STUDENT LOGIN</a>
@@ -467,6 +512,84 @@ footer .footer-links a:hover {text-decoration:underline}
     </div>
    </div>
   </section>
+
+
+<!-- PROFESSIONAL TRAINER & ACADEMY LEADERSHIP -->
+<section class="trainer-section" id="trainer" aria-labelledby="trainer-section-title">
+ <div class="container">
+  <div class="section-title">
+   <div class="tag">MEET THE PEOPLE BEHIND 7 STAR</div>
+   <h2 id="trainer-section-title">Meet Your Trainer &amp; Our Vision</h2>
+   <p>Practical accounting knowledge, clear teaching and a commitment to making accounting education accessible.</p>
+  </div>
+
+  <div class="trainer-profile">
+   <figure class="trainer-photo-card">
+    <img src="trainer-professional.jpg" width="1122" height="1402"
+         alt="Hitesh Vaishnav, Founder and Lead Trainer of 7 STAR Accounting Academy, working on a laptop at his desk"
+         loading="lazy" decoding="async">
+    <figcaption>
+     <strong>Hitesh Vaishnav</strong>
+     <span>Founder &amp; Lead Trainer<br>8 Years in Practical Accounting</span>
+    </figcaption>
+   </figure>
+
+   <div class="trainer-bio">
+    <div class="tag">FOUNDER &amp; LEAD TRAINER</div>
+    <h3>Hitesh Vaishnav</h3>
+    <p class="trainer-role">8 Years of Practical Accounting Experience</p>
+    <p class="trainer-intro">
+     With 8 years of hands-on accounting experience, Hitesh Vaishnav brings practical business knowledge
+     to 7 STAR Accounting Academy. His teaching approach focuses on explaining everyday accounting
+     transactions step by step, helping beginners, job seekers and business owners understand how
+     accounting works in real situations.
+    </p>
+
+    <div class="trainer-experience">
+     <h4>📋 Accounting Experience &amp; Expertise</h4>
+     <ul>
+      <li>8 years of practical accounting experience</li>
+      <li>Day-to-day business accounting and bookkeeping</li>
+      <li>Ledger, voucher and journal entries</li>
+      <li>Purchase, sales, receipts, payments and expenses</li>
+      <li>Accounting records, reports and business transactions</li>
+      <li>Practical examples for job-focused learning</li>
+     </ul>
+    </div>
+
+    <div class="trainer-vision">
+     <h4>🎯 Trainer's Vision</h4>
+     <p>To help learners build confidence through clear explanations and practical accounting exercises,
+     so that accounting becomes easier to understand and apply in real work.</p>
+    </div>
+   </div>
+  </div>
+
+  <div class="trainer-leadership">
+   <article class="trainer-leadership-card">
+    <div class="tag">OUR PURPOSE</div>
+    <h3>🌱 Academy Vision</h3>
+    <p>7 STAR Accounting Academy aims to make practical accounting education affordable,
+    simple and accessible. We want to help students, job seekers and business owners develop
+    accounting confidence through structured lessons, hands-on exercises, progress tracking
+    and a clear path from learning to assessment.</p>
+   </article>
+
+   <article class="trainer-leadership-card" aria-labelledby="cofounder-name">
+    <div class="trainer-cofounder">
+     <div class="trainer-cofounder-icon" aria-hidden="true">KV</div>
+     <div>
+      <h3 id="cofounder-name">Kajal Vaishnav</h3>
+      <span class="trainer-role">Co-Founder — 7 STAR Accounting Academy</span>
+      <p>As Co-Founder, Kajal Vaishnav is part of the academy's commitment to practical and
+      accessible accounting education.</p>
+     </div>
+    </div>
+   </article>
+  </div>
+ </div>
+</section>
+<!-- END TRAINER & ACADEMY LEADERSHIP -->
 
  <section class="soft" id="how">
   <div class="container">
@@ -693,6 +816,7 @@ footer .footer-links a:hover {text-decoration:underline}
   <a href="#home">Home</a>
   <a href="#course">Course</a>
   <a href="#about">About Us</a>
+  <a href="#trainer">Our Trainer</a>
   <a href="#how">How It Works</a>
   <a href="#contact">Contact</a>
   <a href="login.html">Student Login</a>
