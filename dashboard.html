@@ -920,8 +920,13 @@ function buildUI() {
   });
 }
 
-if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", buildUI);
-else buildUI();
+
+if (document.readyState === "complete") {
+  buildUI();
+} else {
+  document.addEventListener("DOMContentLoaded", buildUI);
+}
+
 </script>
 
 </body>
