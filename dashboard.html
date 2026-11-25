@@ -520,5 +520,80 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script>
 
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const chapters = [
+    "What is Accounting? & Types of Accounts",
+    "Modern Rules of Accounting & Journal Entry",
+    "What is GST?",
+    "What is TDS?",
+    "TallyPrime Download & Installation",
+    "TallyPrime Company Creation",
+    "Business Start & Capital Entry",
+    "Cash Deposit Entry",
+    "Cash Withdrawal Entry",
+    "Fixed Asset Entry",
+    "GST Purchase Entry",
+    "GST Sales Entry",
+    "Receipt & Payment Entry",
+    "Interstate Purchase & Sales",
+    "Sales Return & Purchase Return",
+    "Electricity Expense Entry",
+    "TDS & GST Settings",
+    "Salary Payable & Salary Payment",
+    "TDS Payable & TDS Payment",
+    "GSTR-1 & GSTR-3B Reports",
+    "Account Finalization"
+  ];
+
+  const container = document.getElementById("chapterLessons");
+
+  if (!container) return;
+
+  container.innerHTML = chapters.map((title, index) => `
+    <div style="
+      background:#ffffff;
+      border:1px solid #dbeae6;
+      border-radius:12px;
+      padding:16px;
+      margin-bottom:12px;
+      box-shadow:0 2px 8px rgba(0,0,0,0.04);
+    ">
+      <div style="
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        gap:10px;
+        flex-wrap:wrap;
+      ">
+        <strong style="color:#07383a;">
+          📘 Part ${String(index + 1).padStart(2, "0")}
+          — ${title}
+        </strong>
+        <span style="
+          font-size:12px;
+          background:#edf5f2;
+          color:#0c6265;
+          padding:6px 10px;
+          border-radius:20px;
+        ">
+          ○ Not Completed
+        </span>
+      </div>
+
+      <p style="
+        font-size:13px;
+        color:#56756f;
+        margin-bottom:0;
+      ">
+        🎬 Video Lesson &nbsp; | &nbsp; 📝 Practical Test
+      </p>
+    </div>
+  `).join("");
+
+});
+</script>
+
 </body>
 </html>
