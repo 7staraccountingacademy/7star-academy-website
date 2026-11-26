@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -64,7 +63,7 @@ label{
   font-size:14px;
   margin:16px 0 7px;
 }
-input{
+input:not([type="checkbox"]){
   width:100%;
   padding:13px;
   border:1px solid #cbded6;
@@ -80,10 +79,40 @@ input:focus{
   background:#edf5f2;
   padding:15px;
   border-radius:8px;
-  margin:22px 0;
+  margin:22px 0 12px;
   display:flex;
   justify-content:space-between;
   font-weight:bold;
+}
+.policy-consent{
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+  background:#f3faf6;
+  padding:14px;
+  border:1px solid #d4e7df;
+  border-radius:10px;
+  margin:15px 0 19px;
+}
+.policy-consent input[type="checkbox"]{
+  width:19px;
+  height:19px;
+  flex:0 0 19px;
+  margin:2px 0 0;
+  accent-color:#0c6265;
+  cursor:pointer;
+}
+.policy-consent label{
+  margin:0;
+  font-size:13px;
+  font-weight:normal;
+  line-height:1.7;
+  cursor:pointer;
+}
+.policy-consent a{
+  color:#08666b;
+  font-weight:bold;
+  text-decoration:underline;
 }
 button{
   width:100%;
@@ -114,7 +143,7 @@ button:disabled{opacity:.65;cursor:not-allowed}
 <header>
   <a href="index.html">
     <img class="logo"
-      src="Glossy%20Star%20Accounting%20Academy%20Logo.png"
+      src="7star-header-logo.png"
       alt="7 STAR Accounting Academy Logo">
   </a>
   <a class="back" href="index.html">← Back to Home</a>
@@ -128,50 +157,63 @@ button:disabled{opacity:.65;cursor:not-allowed}
       Step-by-Step Hindi Recorded Classes के साथ।
     </p>
     <ul>
-      <li>Complete Recorded Video Course</li>
-      <li>Lifetime Course Access*</li>
+      <li>21 Chapter-wise Video Lessons &amp; Practical Tests</li>
+      <li>Complete 3-Hour Recorded Course</li>
       <li>Practical Accounting Training</li>
-      <li>Final Exam & Certificate on Passing</li>
+      <li>Final Exam &amp; Certificate on Passing</li>
     </ul>
   </div>
 
   <div class="form-box">
     <h2>Student Registration</h2>
-    <p class="subtitle">Admission Form का Preview</p>
+    <p class="subtitle">Create your account to enrol in the ₹99 recorded course.</p>
 
     <form id="registrationForm">
       <label for="name">Full Name *</label>
-      <input id="name" type="text"
+      <input id="name" type="text" autocomplete="name"
         placeholder="Enter your full name" required>
 
       <label for="mobile">Mobile Number *</label>
-      <input id="mobile" type="tel"
+      <input id="mobile" type="tel" inputmode="numeric" autocomplete="tel"
         placeholder="10-digit mobile number"
         pattern="[0-9]{10}" maxlength="10" required>
 
       <label for="email">Email Address *</label>
-      <input id="email" type="email"
+      <input id="email" type="email" autocomplete="email"
         placeholder="Enter your email" required>
 
       <label for="city">City *</label>
-      <input id="city" type="text"
+      <input id="city" type="text" autocomplete="address-level2"
         placeholder="Enter your city" required>
 
-      <label for="password">Create Password</label>
-      <input id="password" type="password"
-  name="password"
-  placeholder="Create Password (Minimum 6 Characters)"
-  minlength="6" required>
+      <label for="password">Create Password *</label>
+      <input id="password" type="password" name="password"
+        autocomplete="new-password"
+        placeholder="Create Password (Minimum 6 Characters)"
+        minlength="6" required>
 
       <div class="price">
         <span>Course Fee</span>
         <span>₹99 Only</span>
       </div>
 
-      <button type="submit">Preview Registration</button>
+      <div class="policy-consent">
+        <input type="checkbox" id="policyConsent" name="policyConsent" required>
+        <label for="policyConsent">
+          I have read and agree to the
+          <a href="terms-and-conditions.html" target="_blank" rel="noopener noreferrer">Terms &amp; Conditions</a>,
+          <a href="privacy-policy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+          and
+          <a href="refund-policy.html" target="_blank" rel="noopener noreferrer">No Refund &amp; Cancellation Policy</a>.
+          I understand that the ₹99 digital course is normally non-refundable,
+          subject to the exceptions described in the policy.
+        </label>
+      </div>
+
+      <button id="registerButton" type="submit">Create Account &amp; Continue to Payment</button>
       <p class="note">
-        This is a demo form. No details are saved or sent.
-        Payment and secure student login are not active yet.
+        After registration, you will be directed to your Student Dashboard
+        to pay ₹99 securely. Course access activates after successful payment verification.
         <br>
         *Lifetime access is available while the course platform operates.
       </p>
@@ -179,11 +221,11 @@ button:disabled{opacity:.65;cursor:not-allowed}
   </div>
 </main>
 
-
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-app.js";
 import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-auth.js";
 import { getFirestore, doc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-firestore.js";
+
 const firebaseConfig = {
   apiKey: "AIzaSyCl38TaDCBuvRsc2AKWV7tRiS4_hKcgbLc",
   authDomain: "star-accounting-academy.firebaseapp.com",
@@ -194,40 +236,67 @@ const firebaseConfig = {
   measurementId: "G-08L18H3VCS"
 };
 
+const POLICY_VERSION = "2026-11-26";
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
+
 document.getElementById("registrationForm")
   .addEventListener("submit", async function(event) {
     event.preventDefault();
 
     const form = event.currentTarget;
+    const button = document.getElementById("registerButton");
     const email = form.querySelector('input[type="email"]')?.value.trim();
     const password = form.querySelector('input[type="password"]')?.value;
     const name = document.getElementById("name").value.trim();
     const mobile = document.getElementById("mobile").value.trim();
     const city = document.getElementById("city").value.trim();
-    if (!email || !password) {
-      alert("Please enter your email and password.");
+    const policyConsent = document.getElementById("policyConsent");
+
+    if (!email || !password || !name || !mobile || !city) {
+      alert("Please fill all required fields.");
       return;
     }
+    if (!policyConsent.checked) {
+      policyConsent.reportValidity();
+      return;
+    }
+
+    button.disabled = true;
+    button.textContent = "Creating your account...";
 
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
 
-await setDoc(doc(db, "students", userCredential.user.uid), {
-  name: name,
-  email: email,
-  mobile: mobile,
-  city: city,
-  paymentStatus: "pending",
-  courseAccess: false,
-  createdAt: serverTimestamp()
-});
+      try {
+        await setDoc(doc(db, "students", userCredential.user.uid), {
+          name: name,
+          email: userCredential.user.email || email,
+          mobile: mobile,
+          city: city,
+          paymentStatus: "pending",
+          courseAccess: false,
+          createdAt: serverTimestamp(),
+          policyAccepted: true,
+          policyAcceptedAt: serverTimestamp(),
+          policyVersion: POLICY_VERSION
+        });
+      } catch (saveError) {
+        console.error("Student record save failed:", saveError);
+        alert("Account was created, but student details could not be saved. " +
+              "Please contact 7 STAR Accounting Academy for support. Do not register again.");
+        return;
+      }
+
       alert("Registration successful! Please complete your ₹99 course payment.");
-window.location.replace("dashboard.html");
+      window.location.replace("dashboard.html");
     } catch (error) {
+      console.error("Registration failed:", error);
       alert("Registration failed: " + error.message);
+    } finally {
+      button.disabled = false;
+      button.textContent = "Create Account & Continue to Payment";
     }
   });
 </script>
