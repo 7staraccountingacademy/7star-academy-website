@@ -434,6 +434,36 @@ body {
 .why-card .why-symbol {font-size:27px}
 @media(max-width:850px){.program-cards {grid-template-columns:1fr;max-width:620px;margin:auto}.why-grid {grid-template-columns:repeat(2,1fr)}}
 @media(max-width:550px){.program-section,.why-choose {padding:52px 0}.hero .academy-hero-title {font-size:clamp(33px,9vw,43px)}.why-grid {grid-template-columns:1fr}.program-card {padding:24px}.academy-hero-actions .btn {padding:14px 17px}}
+
+/* Final navigation: matching Register & Student Login actions */
+header .menu a.nav-action {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:13px 17px;
+  border-radius:8px;
+  background:#0c6265;
+  color:#fff;
+  font-weight:700;
+  font-size:12px;
+  white-space:nowrap;
+  transition:background .2s ease;
+}
+header .menu a.nav-action:hover,header .menu a.nav-action:focus-visible {background:#07494b;color:#fff}
+header .menu {gap:15px}
+/* Founder and Academy Vision now live within About Us */
+#about .trainer-section {margin-top:55px;border-top:1px solid #cfe4d9;background:transparent;padding:65px 0 0}
+@media (max-width:1050px) {
+  header .menu {display:none}
+  header .mobile-nav {display:block;margin-left:auto}
+  header .mobile-nav-panel {min-width:min(260px,calc(100vw - 36px))}
+  header .mobile-nav-panel .nav-action {
+    background:#0c6265;color:#fff;text-align:center;
+    margin-top:7px;padding:13px 15px;border-radius:8px;
+  }
+  header .mobile-nav-panel .nav-action:hover {background:#07494b}
+}
+@media(max-width:550px){#about .trainer-section {padding-top:45px;margin-top:35px}}
 </style>
 </head>
 <body>
@@ -455,11 +485,9 @@ body {
    <a href="#home">HOME</a>
    <a href="#programs">OUR COURSES</a>
    <a href="#about">ABOUT US</a>
-   <a href="#trainer">OUR TRAINER</a>
-   <a href="#how">HOW IT WORKS</a>
    <a href="#contact">CONTACT</a>
-   <a href="login.html">STUDENT LOGIN</a>
-   <a href="#programs" class="btn">COURSES</a>
+   <a href="register.html" class="btn nav-action">REGISTER</a>
+   <a href="login.html" class="btn nav-action">STUDENT LOGIN</a>
   </nav>
   <details class="mobile-nav" id="mobileNav">
    <summary>☰ MENU</summary>
@@ -467,10 +495,9 @@ body {
     <a href="#home">HOME</a>
     <a href="#programs">OUR COURSES</a>
     <a href="#about">ABOUT US</a>
-    <a href="#trainer">OUR TRAINER</a>
-    <a href="#how">HOW IT WORKS</a>
     <a href="#contact">CONTACT</a>
-    <a href="login.html">STUDENT LOGIN</a>
+    <a href="register.html" class="nav-action">REGISTER</a>
+    <a href="login.html" class="nav-action">STUDENT LOGIN</a>
    </nav>
   </details>
  </div>
@@ -705,11 +732,9 @@ body {
      <a class="btn" href="#contact">Contact Our Academy</a>
     </div>
    </div>
-  </section>
-
 
 <!-- PROFESSIONAL TRAINER & ACADEMY LEADERSHIP -->
-<section class="trainer-section" id="trainer" aria-labelledby="trainer-section-title">
+<div class="trainer-section" id="trainer" aria-labelledby="trainer-section-title">
  <div class="container">
   <div class="section-title">
    <div class="tag">MEET THE PEOPLE BEHIND 7 STAR</div>
@@ -782,8 +807,9 @@ body {
    </article>
   </div>
  </div>
-</section>
+</div>
 <!-- END TRAINER & ACADEMY LEADERSHIP -->
+</section>
 
  <section class="soft" id="how">
   <div class="container">
@@ -1019,9 +1045,8 @@ body {
   <a href="#home">Home</a>
   <a href="#programs">Our Courses</a>
   <a href="#about">About Us</a>
-  <a href="#trainer">Our Trainer</a>
-  <a href="#how">How It Works</a>
   <a href="#contact">Contact</a>
+  <a href="register.html">Register</a>
   <a href="login.html">Student Login</a>
  </div>
 
