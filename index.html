@@ -367,6 +367,34 @@ body {
   }
 }
 
+/* Visible academy phone contact in header, contact area and footer */
+.header-contact-bar {background:#07383a;color:#fff;font-size:13px}
+.header-contact-inner {min-height:34px;display:flex;align-items:center;justify-content:flex-end;gap:20px;flex-wrap:wrap}
+.header-contact-bar a {color:#e5f9ef;font-weight:700;white-space:nowrap}
+.header-contact-bar a:hover {text-decoration:underline}
+.contact-phone {background:#edf7f1;border:1px solid #d4e9dd;border-radius:12px;padding:14px 17px;margin:18px 0}
+.contact-phone strong {display:block;margin-bottom:7px;font-size:14px}
+.contact-phone a {color:#075a54;font-weight:800;font-size:clamp(21px,2.6vw,27px);letter-spacing:.02em}
+.contact-phone a:hover {text-decoration:underline}
+.footer-contact {margin:16px auto 7px;display:flex;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap;font-size:15px}
+.footer-contact a {color:#d5f2e3;font-weight:700}
+.footer-contact a:hover {text-decoration:underline}
+/* Keep navigation on one line, as approved in latest live header. */
+@media (min-width:1051px) {
+ header .nav {gap:12px}
+ header .menu {gap:15px;flex-wrap:nowrap}
+ header .menu a {white-space:nowrap;font-size:12px}
+}
+@media (min-width:1051px) and (max-width:1250px) {
+ header img.logo {width:170px}
+ header .menu {gap:11px}
+ header .menu a {font-size:11px}
+}
+@media(max-width:550px) {
+ .header-contact-inner {justify-content:center;gap:15px;min-height:32px;font-size:12px}
+ .contact-phone {padding:12px}
+}
+
 /* Academy-first homepage enhancements: preserve existing course, login and payments */
 .academy-eyebrow {letter-spacing:.045em;text-transform:uppercase}
 .hero .academy-hero-title {font-size:clamp(35px,4.2vw,56px);max-width:680px}
@@ -406,43 +434,17 @@ body {
 .why-card .why-symbol {font-size:27px}
 @media(max-width:850px){.program-cards {grid-template-columns:1fr;max-width:620px;margin:auto}.why-grid {grid-template-columns:repeat(2,1fr)}}
 @media(max-width:550px){.program-section,.why-choose {padding:52px 0}.hero .academy-hero-title {font-size:clamp(33px,9vw,43px)}.why-grid {grid-template-columns:1fr}.program-card {padding:24px}.academy-hero-actions .btn {padding:14px 17px}}
-  
-/* Header menu alignment fix */
-@media (min-width:1051px) {
-  header .nav {
-    gap:12px;
-  }
-
-  header .menu {
-    gap:15px;
-    flex-wrap:nowrap;
-  }
-
-  header .menu a {
-    white-space:nowrap;
-    font-size:12px;
-  }
-}
-
-@media (min-width:1051px) and (max-width:1250px) {
-  header img.logo {
-    width:170px;
-  }
-
-  header .menu {
-    gap:11px;
-  }
-
-  header .menu a {
-    font-size:11px;
-  }
-}
-
 </style>
 </head>
 <body>
 
 <header>
+ <div class="header-contact-bar">
+  <div class="container header-contact-inner">
+   <a href="tel:+917698763150" aria-label="Call 7 STAR Accounting Academy at 76987 63150">☎ Call: +91 76987 63150</a>
+   <a href="https://wa.me/message/H4UBW6L3BT2CJ1" target="_blank" rel="noopener noreferrer">💬 WhatsApp Enquiry</a>
+  </div>
+ </div>
  <div class="container nav">
   <a href="#home" aria-label="7 STAR Accounting Academy Home">
    <img class="logo"
@@ -826,8 +828,13 @@ body {
       <h3>📍 Surat, Gujarat</h3>
       <p>Recorded, live online aur offline accounting courses ke admission aur batch details ke liye WhatsApp Business par message karein.</p>
       <p><strong>Programs:</strong> Recorded ₹99 • Live Online ₹2,500 • Offline ₹5,000</p>
+      <div class="contact-phone">
+       <strong>Call or WhatsApp our Academy</strong>
+       <a href="tel:+917698763150">📞 +91 76987 63150</a>
+      </div>
       <div class="contact-actions">
-       <a class="btn" href="https://wa.me/message/H4UBW6L3BT2CJ1" target="_blank" rel="noopener noreferrer">💬 Ask on WhatsApp</a>
+       <a class="btn" href="tel:+917698763150">📞 Call Now</a>
+       <a class="btn btn-outline" href="https://wa.me/message/H4UBW6L3BT2CJ1" target="_blank" rel="noopener noreferrer">💬 WhatsApp Enquiry</a>
        <a class="btn btn-outline" href="#programs">View All Courses</a>
       </div>
      </div>
@@ -1004,6 +1011,10 @@ body {
 <footer>
  <strong>7 STAR Accounting Academy</strong>
  <p>Learn Accounting • Build Your Future</p>
+ <div class="footer-contact">
+  <a href="tel:+917698763150">☎ +91 76987 63150</a>
+  <a href="https://wa.me/message/H4UBW6L3BT2CJ1" target="_blank" rel="noopener noreferrer">WhatsApp Business</a>
+ </div>
  <div class="footer-links">
   <a href="#home">Home</a>
   <a href="#programs">Our Courses</a>
