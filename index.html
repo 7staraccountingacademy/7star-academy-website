@@ -406,6 +406,38 @@ body {
 .why-card .why-symbol {font-size:27px}
 @media(max-width:850px){.program-cards {grid-template-columns:1fr;max-width:620px;margin:auto}.why-grid {grid-template-columns:repeat(2,1fr)}}
 @media(max-width:550px){.program-section,.why-choose {padding:52px 0}.hero .academy-hero-title {font-size:clamp(33px,9vw,43px)}.why-grid {grid-template-columns:1fr}.program-card {padding:24px}.academy-hero-actions .btn {padding:14px 17px}}
+  
+/* Header menu alignment fix */
+@media (min-width:1051px) {
+  header .nav {
+    gap:12px;
+  }
+
+  header .menu {
+    gap:15px;
+    flex-wrap:nowrap;
+  }
+
+  header .menu a {
+    white-space:nowrap;
+    font-size:12px;
+  }
+}
+
+@media (min-width:1051px) and (max-width:1250px) {
+  header img.logo {
+    width:170px;
+  }
+
+  header .menu {
+    gap:11px;
+  }
+
+  header .menu a {
+    font-size:11px;
+  }
+}
+
 </style>
 </head>
 <body>
